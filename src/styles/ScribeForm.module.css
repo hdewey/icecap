@@ -1,0 +1,123 @@
+.form {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10vh;
+  width: 40%;
+}
+
+.form > *:not(:last-child) {
+  margin-bottom: 30px; /* Adjust this value according to your design needs */
+}
+
+.textInput {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 15px;
+  margin: 15px 0;
+  border: none;
+  border-bottom: 2px solid #0070f3;  /* Sleek underline style */
+  border-radius: 0;  /* Rectangular style, no rounded corners */
+  background-color: transparent;
+  color: #FFF;
+  appearance: none; 
+  transition: border-bottom-color 0.3s ease;  /* Smooth transition for the underline */
+  font-size: 20px;
+  font-weight: 300;  /* Light font weight */
+}
+
+.textInput:focus {
+  outline: none;
+  border-bottom-color: #FFF;  /* Underline turns white on focus */
+  box-shadow: none;
+}
+
+.submitButton {
+  font-size: 20px;
+  display: block;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: 2px solid #0070f3;
+  border-radius: 4px;
+  background-color: #0070f3;
+  color: #FFF;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out; 
+  font-weight: 700;  /* Bold font weight */
+}
+
+.submitButton:hover, .submitButton:focus {
+  background-color: transparent;
+  color: #FFF;
+}
+.recordingButton {
+  font-size: 20px;
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid #0070f3;
+  border-radius: 4px;
+  background-color: #0070f3;
+  color: #FFF;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out; 
+  font-weight: 700; 
+}
+
+.recordingButton:hover {
+  background-color: transparent;
+}
+/* File Upload Styles */
+.fileupload {
+  display: none;  /* Hides the default file input */
+}
+
+.fileupload + label {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid #0070f3;
+  border-radius: 4px;
+  color: ivory;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out; 
+  font-weight: 700;
+}
+
+.fileupload:focus + label, 
+.fileupload + label:hover {
+  background-color: #0070f3;
+  color: #FFF;
+}
+
+.audio {
+  padding-top: 20px;
+}
+
+.uploadLabelUploaded:hover {
+  background-color: #005ecb;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 15px;  /* Spacing between elements */
+  margin-bottom: 20px;
+}
+
+.orText {
+  color: #FFF;
+  margin: 0 10px;  /* Additional spacing around the "or" text */
+  font-size: 20px;
+  padding-top: 15px;
+}
+
+/* Adjusting upload label to fit within the row */
+.uploadLabel, .uploadLabelUploaded {
+  font-size: 20px;
+  padding: 10px 15px;  /* Slightly reduced padding for better fit */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}

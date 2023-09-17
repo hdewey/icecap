@@ -1,0 +1,52 @@
+.taskBox {
+  border: 1px solid ivory;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;  /* Adjusts children to be stacked vertically */
+  gap: 10px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.loading {
+  background-color: yellow;
+  animation: fadeInOut 2s infinite;
+}
+
+.success {
+  background-color: green;
+}
+
+.failure {
+  background-color: red;
+}
+
+.taskResult {
+  padding: 5px;
+  white-space: pre-line;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

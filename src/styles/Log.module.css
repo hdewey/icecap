@@ -1,0 +1,26 @@
+.propertyBox {
+  border: 1px solid ivory;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  /* Adjusts children to be stacked vertically */
+  gap: 10px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.textResult {
+  padding: 5px;
+  white-space: pre-line;
+}
+
+.propertyName {
+  color: #0070f3;
+  border: 2px solid #0070f3;
+  border-radius: 4px;
+  padding: 5px;
+}
