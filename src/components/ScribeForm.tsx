@@ -46,7 +46,7 @@ const ScribeForm = () => {
       setIsRecording(true);
       setMediaRecorder(mediaRecorder);
     
-      intervalRef.current = setInterval(() => setTimer((prev) => Math.round((prev + 0.1) * 100) / 100), 100);
+      // intervalRef.current = setInterval(() => setTimer((prev) => Math.round((prev + 0.1) * 100) / 100), 100);
     }
   };
 
@@ -62,21 +62,21 @@ const ScribeForm = () => {
       setIsRecording(false)
       audioChunks.current = [];
     }
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
+    // if (intervalRef.current) {
+    //   clearInterval(intervalRef.current);
+    //   intervalRef.current = null;
+    // }
     setTimer(0);
   };
 
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     if (intervalRef.current) {
+  //       clearInterval(intervalRef.current);
+  //       intervalRef.current = null;
+  //     }
+  //   };
+  // }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
