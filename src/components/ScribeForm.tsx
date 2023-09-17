@@ -20,6 +20,7 @@ const ScribeForm = () => {
   const audioChunks = useRef<Blob[]>([]);
 
   const [ taskId, setTaskId ] = useState('');
+  const [ isTaskSynced, setIsTaskSynced ] = useState(true);
 
   const [timer, setTimer] = useState<number>(0);
   let intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -81,6 +82,8 @@ const ScribeForm = () => {
     e.preventDefault();
 
     setTaskId('');
+
+    setIsTaskSynced(false);
   
     if (!audioBlob && !file) {
       alert('You need to either record audio or upload a file.');
@@ -120,6 +123,12 @@ const ScribeForm = () => {
       alert('An error occurred while uploading the file. Please try again.');
     }
   };
+
+  useEffect(() => {
+    if (!isTaskSynced && taskId !== '') {
+      setIsTaskSynced(true);
+    }
+  }, [taskId] )
 
   return (
     <>
@@ -179,7 +188,7 @@ const ScribeForm = () => {
                     
                 </div>
               
-              <button className={theme.submitButton} type="submit">Submit</button>  
+              <button className={theme.submitButton} type="submit" disabled={!isTaskSynced}>Submit</button>  
               </div>
             </div>
               
@@ -187,7 +196,7 @@ const ScribeForm = () => {
           </div>
 
           {
-            taskId && <TaskChecker taskId={taskId} taskType={'scribe'} />
+            (taskId || !isTaskSynced) && <TaskChecker taskId={taskId} taskType={'scribe'}  />
           }
         </>
         ) : <Loader />
