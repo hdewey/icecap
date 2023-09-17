@@ -126,6 +126,8 @@ const ScribeForm = () => {
       {
         properties ? (
           <>
+            <div className={styles.container}>
+
             <form className={theme.form} onSubmit={handleSubmit}>
             <select
               className={theme.textInput}
@@ -144,14 +146,15 @@ const ScribeForm = () => {
 
             <div className={!propertyId ? theme.overlay : ''}>
             {!propertyId && <div className={theme.pseudoOverlay}></div>}
+            {!propertyId && <div className={theme.miniPseudoOverlay}><h6>please select property</h6></div>}
               <div className={propertyId ? '' : theme.blur}>
                 <div className={styles.actionRow}>
                     {isRecording ? (
-                      <button className={styles.recordingButton} type="button" onClick={stopRecording}>
+                      <button className={theme.button} type="button" onClick={stopRecording}>
                         Stop Recording
                       </button>
                     ) : (
-                      <button className={styles.recordingButton} type="button" onClick={startRecording}>
+                      <button className={theme.button} type="button" onClick={startRecording}>
                         Start Recording
                       </button>
                     )}
@@ -181,6 +184,8 @@ const ScribeForm = () => {
             </div>
               
           </form>
+          </div>
+
           {
             taskId && <TaskChecker taskId={taskId} taskType={'scribe'} />
           }

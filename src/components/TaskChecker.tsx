@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axios";
 
-import styles from "../styles/TaskChecker.module.css"
+import styles from "../styles/TaskChecker.module.css";
+
+const funcs: {[index: string]: string } = {
+  'fabricate': 'Generation',
+  'scribe': 'Transcription'
+}
 
 const TaskChecker = ({ taskId, taskType }: { taskId: string | null, taskType: string | null }) => {
   const [taskResult, setTaskResult] = useState<null | any>(null);
@@ -41,7 +46,9 @@ const TaskChecker = ({ taskId, taskType }: { taskId: string | null, taskType: st
     <div className={styles.taskBox}>
       <div className={styles.statusRow}>
         <div className={styles.circle + ' ' + styles[taskState.toLowerCase()]}></div>
-        Task ID: {taskId}
+        { taskResult && taskType && <h3>{ funcs[taskType] } is finished!</h3> }
+        { taskState === "LOADING" && taskType && <h3>{ funcs[taskType] } is loading.</h3> }
+        { taskState === "FAILURE" && taskType && <h3>{ funcs[taskType] } failed. Please try again.</h3> }  
       </div>
       {
         taskResult && 

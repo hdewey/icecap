@@ -1,6 +1,7 @@
 .taskBox {
-  border: 1px solid ivory;
-  width: 80%;
+  border: var(--border);
+  margin-top: 4vh;
+  width: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column;  /* Adjusts children to be stacked vertically */
@@ -8,16 +9,19 @@
 }
 
 .statusRow {
+  padding: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   display: inline-block;
+  border: 2px solid black;
+  box-shadow: var(--box-shadow);
 }
 
 .loading {
@@ -26,7 +30,7 @@
 }
 
 .success {
-  background-color: rgb(0, 192, 0);
+  background-color: var(--success);
 }
 
 .failure {
@@ -34,7 +38,7 @@
 }
 
 .taskResult {
-  padding: 5px;
+  padding: 10px;
   white-space: pre-line;
 }
 

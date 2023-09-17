@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Panel from '../components/shared/Panel';
 const CreatePropertyForm = dynamic(() => import('../components/CreatePropertyForm'), {
   ssr: false,
 });
@@ -18,10 +19,9 @@ const CreateProperty: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          <Link className={styles.back} href="/">&larr;</Link>{'   Create'}
-        </h1>
-        <CreatePropertyForm />
+        <Panel title={"create"}>
+          <CreatePropertyForm />
+        </Panel>
       </main>
     </div>
   )

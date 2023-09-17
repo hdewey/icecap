@@ -6,6 +6,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Panel from '../components/shared/Panel';
 const Log = dynamic(() => import('../components/Log'), {
   ssr: false,
 });
@@ -20,10 +21,9 @@ const LogPage: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          <Link className={styles.back} href="/">&larr;</Link>{'   Log'}
-        </h1>
-        <Log />
+        <Panel title={"logs"}>
+          <Log />
+        </Panel>
       </main>
     </div>
   )

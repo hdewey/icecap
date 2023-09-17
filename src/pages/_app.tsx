@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import Header from '../components/shared/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -9,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
+        <Header title={"snowcap"} />
         <Component {...pageProps} />
       </QueryClientProvider>
     </>

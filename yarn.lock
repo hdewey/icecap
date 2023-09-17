@@ -1591,7 +1591,7 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next@13.4.19":
+"next@^13.4.19":
   "integrity" "sha512-HuPSzzAbJ1T4BD8e0bs6B9C1kWQ6gv8ykZoRWs5AQoiIuqbGHHdQO7Ljuvg05Q0Z24E2ABozHe6FxDvI6HfyAw=="
   "resolved" "https://registry.npmjs.org/next/-/next-13.4.19.tgz"
   "version" "13.4.19"

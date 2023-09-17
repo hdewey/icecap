@@ -1,21 +1,5 @@
-.recordingButton {
-  font-size: 20px;
-  display: block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: 2px solid #0070f3;
-  border-radius: 4px;
-  background-color: #0070f3;
-  color: ivory;
-  cursor: pointer;
-  transition: background-color 0.3s ease-out;
-  transition: color ease .3s;
-  font-weight: 700; 
-}
-
-.recordingButton:hover {
-  background-color: transparent;
-  color: #0070f3
+.container {
+  width: 90%;
 }
 
 .fileupload {
@@ -24,43 +8,41 @@
 
 .fileupload + label {
   display: block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: 2px solid #0070f3;
-  border-radius: 4px;
-  color: #0070f3;
+  padding: 10px 15px;
+  border: var(--border);
+  color: var(--primary-dark);
   cursor: pointer;
-  transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease;
   transition: color 0.3s ease;
   font-weight: 700;
+  font-size: 26px;
+  box-shadow: var(--box-shadow);
 }
 
 .fileupload:focus + label, 
 .fileupload + label:hover {
-  background-color: #0070f3;
+  background-color: var(--primary-light);
   color: ivory;
 }
 
 .audio {
-  padding-top: 20px;
 }
 
 .uploadLabelUploaded:hover {
-  background-color: #005ecb;
+  background-color: var(--primary-light);
 }
 
 .actionRow {
   display: flex;
   align-items: center;
-  gap: 15px;  
-  margin-bottom: 20px;
+  gap: 30px; 
+  margin-top: 40px; 
+  margin-bottom: 40px;
 }
 
 .orText {
-  color: #FFF;
-  margin: 0 10px;
-  font-size: 20px;
-  padding-top: 15px;
+  color: var(--primary-dark);
+  font-size: 30px;
 }
 
 .uploadLabel, .uploadLabelUploaded {

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Panel from '../components/shared/Panel';
 const ScribeForm = dynamic(() => import('../components/ScribeForm'), {
   ssr: false,
 });
@@ -18,10 +19,9 @@ const Upload: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          <Link className={styles.back} href="/">&larr;</Link>{'   Upload'}
-        </h1>
-        <ScribeForm />
+        <Panel title={"upload"}>
+          <ScribeForm />
+        </Panel>
       </main>
     </div>
   )

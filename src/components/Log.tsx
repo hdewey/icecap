@@ -4,17 +4,24 @@ import theme from '../styles/theme.module.css';
 
 import styles from "../styles/Log.module.css";
 import Loader from "./Loader";
+import { useState } from "react";
 
 const Log = () => {
 
   const { data: properties, isLoading: isPropertiesLoading } = useProperties();
+
+  const [ openedCard, setOpenedCard ] = useState<null | number>(null);
 
   return (
     <>
       <div style={{marginTop: '5vh', width: '100%'}}>
         { 
           properties ? properties.map( (property: any, index: number) => {
-            return <PropertyInfoCard key={index} property={property} />
+            return (
+              <div key={index} className={styles.cardWrapper} onClick={() => setOpenedCard(index)}>
+                <PropertyInfoCard isOpen={openedCard === index ? true : false} property={property} />
+              </div>
+            )
           }) : <Loader />
         }
       </div>
@@ -24,13 +31,19 @@ const Log = () => {
 
 export default Log;
 
-const PropertyInfoCard = ({ property }: { property: any }) => {
+const PropertyInfoCard = ({ isOpen, property }: { isOpen: boolean, property: any }) => {
 
   const { data: propertyInfo, isLoading: isPropertyInfoLoading } = usePropertyInfo(property._id);
 
+  const [ isTranscriptionsOpen, setIsTranscriptionsOpen ] = useState(false);
+  const toggleIsTranscriptionsOpen = () => setIsTranscriptionsOpen(!isTranscriptionsOpen);
+
+  const [ isDescriptionsOpen, setIsDescriptionsOpen ] = useState(false);
+  const toggleIsDescriptionsOpen = () => setIsDescriptionsOpen(!isDescriptionsOpen);
+
   function convertUnixTimestampToDate(unixTimestamp: number) {
-    const date = new Date(unixTimestamp * 1000); // Convert to milliseconds
-    return `${date.toDateString()} ${date.toTimeString().split(' ')[0]}`; // Format to full date and time
+    const date = new Date(unixTimestamp * 1000); 
+    return `${date.toDateString()} ${date.toTimeString().split(' ')[0]}`; 
   }
 
   return (
@@ -40,37 +53,45 @@ const PropertyInfoCard = ({ property }: { property: any }) => {
           <h2>{property.agent}</h2>
         </div>
         {
-          propertyInfo ?
+          propertyInfo && isOpen ?
             <>
               { propertyInfo.transcripts && 
                 <div>
-                  <h3>Transcriptions: ({propertyInfo.transcripts.length}) </h3>
-                  <ul className={styles.listContainer}>
+                  <h2>Transcriptions: ({propertyInfo.transcripts.length})</h2>
+                  <div className={styles.listContainer}>
                     {propertyInfo.transcripts.map((transcript: any, index: number) => (
-                      <li key={index} className={styles.dataBox}>
-                        <h3 className={styles.timestampHeader}>{convertUnixTimestampToDate(transcript.upload_time)}</h3>
-                        <div className={styles.textResult}>{transcript.transcription}</div>
-                      </li>
+                      <>
+                        <h1 className={styles.taskNumber}>{index + 1}</h1>
+
+                        <div key={index} className={styles.dataBox}>
+                          <h3 className={styles.timestampHeader}>{convertUnixTimestampToDate(transcript.upload_time)}</h3>
+                          <div className={styles.textResult}>{transcript.transcription}</div>
+                        </div>
+                      </>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               }
 
               { propertyInfo.descriptions && 
                 <div>
-                  <h3>Descriptions: ({propertyInfo.descriptions.length})</h3>
-                  <ul className={styles.listContainer}>
+                  <h2>Descriptions: ({propertyInfo.descriptions.length})</h2>
+                  <div className={styles.listContainer}>
                     {propertyInfo.descriptions.map((desc: any, index: number) => (
-                      <li key={index} className={styles.dataBox}>
-                        <h3 className={styles.timestampHeader}>{convertUnixTimestampToDate(desc.upload_time)}</h3>
-                        <div className={styles.textResult}>{desc.descriptions}</div>
-                      </li>
+                      <>
+                        <h1 className={styles.taskNumber}>{index + 1}</h1>
+
+                        <div key={index} className={styles.dataBox}>
+                          <h3 className={styles.timestampHeader}>{convertUnixTimestampToDate(desc.upload_time)}</h3>
+                          <div className={styles.textResult}>{desc.descriptions}</div>
+                        </div>
+                      </>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               }
             </>
-          : <Loader />
+          : isPropertyInfoLoading && <Loader />
         }
     </div>
   );

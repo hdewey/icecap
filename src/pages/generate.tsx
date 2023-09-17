@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Panel from '../components/shared/Panel';
 const GenerateForm = dynamic(() => import('../components/GenerateForm'), {
   ssr: false,
 });
@@ -18,10 +19,9 @@ const Generate: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          <Link className={styles.back} href="/">&larr;</Link>{'   Generate'}
-        </h1>
-        <GenerateForm />
+        <Panel title={"generate"}>
+          <GenerateForm />
+        </Panel>
       </main>
     </div>
   )
