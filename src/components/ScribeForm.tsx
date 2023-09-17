@@ -37,6 +37,7 @@ const ScribeForm = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorder = new RecordRTC(stream, {
         type: 'audio',
+        timeSlice: 1000,
         ondataavailable: function (blob) {
           audioChunks.current.push(blob);
         },
