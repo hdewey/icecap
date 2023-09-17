@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/Header.module.css';
 import ActiveLink from './ActiveLink';
+import Link from 'next/link';
 
 const pages = [
   { name: 'create', path: '/create' },
@@ -30,7 +31,7 @@ const Header = ({ title }: { title: string }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
+        <Link href="/"><h1 className={styles.title}>{title}</h1></Link>
         <div className={styles.menu} ref={menuRef}>
           {isMenuOpen ? (
             <ul className={styles.mobileNav}>
