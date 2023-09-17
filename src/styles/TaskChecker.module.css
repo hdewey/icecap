@@ -1,6 +1,6 @@
 .taskBox {
   border: 1px solid ivory;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   display: flex;
   flex-direction: column;  /* Adjusts children to be stacked vertically */
@@ -26,7 +26,7 @@
 }
 
 .success {
-  background-color: green;
+  background-color: rgb(0, 192, 0);
 }
 
 .failure {

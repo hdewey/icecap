@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../styles/GenerateForm.module.css';
+import theme from '../styles/theme.module.css';
 
 import axios from "../utils/axios"
 import TaskChecker from './TaskChecker';
@@ -41,9 +42,9 @@ const GenerateForm = () => {
       {
         properties ? (
           <>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={theme.form} onSubmit={handleSubmit}>
               <select
-                className={styles.textInput}
+                className={theme.textInput}
                 value={propertyId}
                 onChange={(e) => setPropertyId(e.target.value)}
               >
@@ -51,12 +52,18 @@ const GenerateForm = () => {
                 {
                   properties && properties.map((property: any) => (
                     <option key={property._id} value={property._id}>
-                      {property.property_name}
+                      {property.property_name}{' - '}{property.agent}
                     </option>
                   ))
                 }
               </select>
-              <button className={styles.submitButton} type="submit">Generate</button>
+              <div className={!propertyId ? theme.overlay : ''}>
+            {!propertyId && <div className={theme.pseudoOverlay}></div>}
+              <div className={propertyId ? '' : theme.blur}>
+              <button className={theme.submitButton} type="submit">Generate</button>
+
+              </div>
+              </div>
             </form>
             {
               taskId && <TaskChecker taskId={taskId} taskType={'fabricate'} />

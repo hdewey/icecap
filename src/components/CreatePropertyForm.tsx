@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../styles/GenerateForm.module.css';
+import theme from '../styles/theme.module.css';
 
 const CreatePropertyForm = () => {
   const [propertyName, setPropertyName] = useState<string>('');
@@ -45,22 +46,22 @@ const CreatePropertyForm = () => {
 
   return (
     <>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={theme.form} onSubmit={handleSubmit}>
         <input
-          className={styles.textInput}
+          className={theme.textInput}
           type="text"
           placeholder="Property Name"
           value={propertyName}
           onChange={(e) => setPropertyName(e.target.value)}
         />
         <input
-          className={styles.textInput}
+          className={theme.textInput}
           type="text"
           placeholder="Agent"
           value={agent}
           onChange={(e) => setAgent(e.target.value)}
         />
-        <button className={styles.submitButton} type="submit">Create Property</button>
+        <button className={theme.submitButton} type="submit">Create Property</button>
       </form>
       {
         propertyAdded && <p>Property successfully added!</p>

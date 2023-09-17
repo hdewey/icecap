@@ -1,6 +1,7 @@
 import axios from '../utils/axios';
 import { useState, useRef, useEffect } from 'react';
 import styles from '../styles/ScribeForm.module.css';
+import theme from '../styles/theme.module.css';
 import RecordRTC from 'recordrtc';
 import TaskChecker from './TaskChecker';
 import useProperties from '../hooks/useProperties';
@@ -125,9 +126,9 @@ const ScribeForm = () => {
       {
         properties ? (
           <>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={theme.form} onSubmit={handleSubmit}>
             <select
-              className={styles.textInput}
+              className={theme.textInput}
               value={propertyId}
               onChange={(e) => setPropertyId(e.target.value)}
             >
@@ -135,43 +136,50 @@ const ScribeForm = () => {
               {
                 properties && properties.map((property: any) => (
                   <option key={property._id} value={property._id}>
-                    {property.property_name}
+                    {property.property_name}{' - '}{property.agent}
                   </option>
                 ))
               }
             </select>
-              <div className={styles.actionRow}>
-                {isRecording ? (
-                    <button className={styles.recordingButton} type="button" onClick={stopRecording}>
+
+            <div className={!propertyId ? theme.overlay : ''}>
+            {!propertyId && <div className={theme.pseudoOverlay}></div>}
+              <div className={propertyId ? '' : theme.blur}>
+                <div className={styles.actionRow}>
+                    {isRecording ? (
+                      <button className={styles.recordingButton} type="button" onClick={stopRecording}>
                         Stop Recording
-                    </button>
-                ) : (
-                    <button className={styles.recordingButton} type="button" onClick={startRecording}>
+                      </button>
+                    ) : (
+                      <button className={styles.recordingButton} type="button" onClick={startRecording}>
                         Start Recording
-                    </button>
-                )}
-                {
-                  !audioURL ? (
-                    <>
-                      <span className={styles.orText}>or</span>
-                      <input
-                          id="fileUploadInput"
-                          className={styles.fileupload}
-                          type="file"
-                          onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
-                      />
-                      <label 
-                          className={file ? styles.uploadLabelUploaded : styles.uploadLabel} 
-                          htmlFor="fileUploadInput">
-                          {file ? file.name : "Upload Audio"}
-                      </label>
-                    </>
-                  ) : (audioURL && <audio className={styles.audio} src={audioURL} controls></audio>) 
-                }
-                
+                      </button>
+                    )}
+                    {
+                      !audioURL ? (
+                        <>
+                          <span className={styles.orText}>or</span>
+                          <input
+                            id="fileUploadInput"
+                            className={styles.fileupload}
+                            type="file"
+                            onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+                          />
+                          <label 
+                            className={file ? styles.uploadLabelUploaded : styles.uploadLabel} 
+                            htmlFor="fileUploadInput">
+                            {file ? file.name : "Upload Audio"}
+                          </label>
+                        </>
+                      ) : (audioURL && <audio className={styles.audio} src={audioURL} controls></audio>) 
+                    }
+                    
+                </div>
+              
+              <button className={theme.submitButton} type="submit">Submit</button>  
+              </div>
             </div>
-            
-            <button className={styles.submitButton} type="submit">Submit</button>
+              
           </form>
           {
             taskId && <TaskChecker taskId={taskId} taskType={'scribe'} />

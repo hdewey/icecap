@@ -1,0 +1,75 @@
+.form {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10vh;
+  width: 40%;
+}
+
+.form > *:not(:last-child) {
+  margin-bottom: 30px; 
+}
+
+.submitButton {
+  font-size: 20px;
+  display: block;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: 2px solid #0070f3;
+  border-radius: 4px;
+  background-color: #0070f3;
+  color: #fffff0;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+  transition: color 0.3s ease;
+  font-weight: 700; 
+}
+
+.submitButton:hover, .submitButton:focus {
+  background-color: transparent;
+  color: #0070f3
+}
+
+.textInput {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 15px;
+  margin: 15px 0;
+  border: none;
+  border-bottom: 2px solid #0070f3;
+  border-radius: 0; 
+  background-color: transparent;
+  color: #fffff0;
+  appearance: none; 
+  transition: border-bottom-color 0.3s ease;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.textInput:focus {
+  outline: none;
+  border-bottom-color: #fffff0;
+  box-shadow: none;
+}
+
+.overlay {
+  position: relative;
+  padding: 10px;
+}
+
+.pseudoOverlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 255, 0.5);
+  border-radius: 8px;
+  z-index: 1;
+  pointer-events: auto; 
+}
+.blur {
+  filter: blur(15px);
+  pointer-events: none; 
+}
