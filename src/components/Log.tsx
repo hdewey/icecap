@@ -88,17 +88,18 @@ const PropertyInfoCard = ({ isOpen, property }: { isOpen: boolean, property: any
           { propertyInfo && !lastUpdated && <div>{"No modifications"}</div> }
         </div>
       </div>
-        {/* {
-          !isOpen ? 
+        {
+          isOpen ? 
             <>
+              {isPropertyInfoLoading && <Loader />}
             </>
           : (
             <>
             </>
           )
-        } */}
+        }
         {
-          propertyInfo && isOpen ?
+          propertyInfo && isOpen &&
             <>
               {propertyInfo.transcripts && 
                 <div>
@@ -134,7 +135,6 @@ const PropertyInfoCard = ({ isOpen, property }: { isOpen: boolean, property: any
                 </div>
               }
             </>
-          : isPropertyInfoLoading && <Loader />
         }
     </div>
   );
