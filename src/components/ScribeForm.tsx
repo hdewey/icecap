@@ -100,6 +100,8 @@ const ScribeForm = () => {
     // Decide on the priority here. This time, we're checking for audioBlob first.
     // If audioBlob exists, it uses that; otherwise, it uses the file.
     let dataToUpload: File | Blob | null = audioBlob;
+
+    console.log('Submitting: ', dataToUpload);
   
     if (dataToUpload) {
       const fileType = dataToUpload?.type.split(';')[0].split('/')[1];
