@@ -40,7 +40,6 @@
 }
 
 .listContainer {
-  margin-top: 4vh;
   padding-left: 0;
 }
 
@@ -51,9 +50,28 @@
   width: 80%;
 }
 
+.dataBox {
+  display: flex;
+}
+
+.index {
+  flex-shrink: 0; /* Prevents h1 from shrinking */
+  margin-right: 20px; /* Space between the index and the content */
+  font-size: 38px; /* Adjust size as needed */
+  align-self: flex-start; /* Aligns to the top of its container */
+}
+
+.sectionTitle {
+  margin-top: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+}
+
 .timestampHeader {
   color: var(--primary-dark);
-  margin-bottom: 5px;  /* Spacing between the timestamp header and the content */
 }
 
 .textResult {
