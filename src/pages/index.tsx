@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Panel from '../components/shared/Panel'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
@@ -21,13 +22,13 @@ const Home: NextPage = () => {
 
           <p className={styles.description}>
             Get started by {' '}
-            <a href='/create'>creating</a>{', '}
-            <a href='/upload'>uploading</a>{', or '}<a href='/generate'>generating</a>
+            <Link href='/create'>creating</Link>{', '}
+            <Link href='/upload'>uploading</Link>{', or '}<Link href='/generate'>generating</Link>
           </p>
 
           <p className={styles.description}>
             You can also view the {' '}
-            <a href='/log'>log</a>{'.'}
+            <Link as={'a'} href='/log'>log</Link>{'.'}
           </p>
         </Panel>
       </main>
