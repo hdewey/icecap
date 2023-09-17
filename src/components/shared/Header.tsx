@@ -50,7 +50,6 @@ const Header = ({ title }: { title: string }) => {
                   <ActiveLink href={page.path} activeClassName={styles.activeLink}>
                     <span>{page.name}</span>
                   </ActiveLink>
-                  {index !== pages.length - 1 && " - "}
                 </React.Fragment>
               ))}
             </div>

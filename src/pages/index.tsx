@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Panel title={"about"}>
+        <Panel title={"home"}>
           <h1 className={styles.title}>
             welcome to <a>snowcap</a>!
           </h1>

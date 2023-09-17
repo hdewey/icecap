@@ -27,17 +27,17 @@
 }
 
 .title {
-  color: var(--primary-light)
+  color: #5a63ff; 
 }
 
 .title a {
-  color: #453BB7;
+  color: var(--primary-dark); 
   text-decoration: none;
 }
 
 .back {
   position: absolute;
-  color: #453BB7;
+  color: var(--primary-dark); 
   left: 30px;
   top: 4rem;
 }
@@ -49,7 +49,7 @@
 }
 
 .description a {
-  color: #453BB7;
+  color: var(--primary-dark); 
   font-weight: 700;
   text-decoration: none; 
 }
@@ -75,6 +75,7 @@
   margin: 4rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
+  color: #5a63ff; 
 }
 
 .code {

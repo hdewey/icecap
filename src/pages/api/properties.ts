@@ -17,7 +17,7 @@ export default async function handler(
   const db = client.db('horizon_v2');
   const propertiesCollection = db.collection('properties');
 
-  const allProperties = await propertiesCollection.find().toArray();
+  const allProperties = await propertiesCollection.find().sort({ uploaded_at: -1 }).toArray();
 
   await client.close();
 
