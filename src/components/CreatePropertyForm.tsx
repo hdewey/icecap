@@ -47,20 +47,23 @@ const CreatePropertyForm = () => {
   return (
     <>
       <form className={theme.form} onSubmit={handleSubmit}>
-        <input
-          className={theme.textInput}
-          type="text"
-          placeholder="Property Name"
-          value={propertyName}
-          onChange={(e) => setPropertyName(e.target.value)}
-        />
-        <input
-          className={theme.textInput}
-          type="text"
-          placeholder="Agent"
-          value={agent}
-          onChange={(e) => setAgent(e.target.value)}
-        />
+        
+        <div className={theme.stack}>
+          <input
+            className={theme.textInput}
+            type="text"
+            placeholder="Property Name"
+            value={propertyName}
+            onChange={(e) => setPropertyName(e.target.value)}
+          />
+          <input
+            className={theme.textInput}
+            type="text"
+            placeholder="Agent"
+            value={agent}
+            onChange={(e) => setAgent(e.target.value)}
+          />
+        </div>
         <button className={theme.submitButton} type="submit">Create Property</button>
       </form>
       {

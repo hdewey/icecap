@@ -3,13 +3,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  min-height: 250px;
   width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9999;
 }
 
 .loader {
@@ -24,7 +19,7 @@
 .dot {
   width: 10px;
   height: 10px;
-  background-color: #0070f3;
+  background-color: var(--primary-dark);
   border-radius: 50%;
   opacity: 0.3;
 }

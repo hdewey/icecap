@@ -59,6 +59,7 @@ const GenerateForm = () => {
               </select>
               <div className={!propertyId ? theme.overlay : ''}>
             {!propertyId && <div className={theme.pseudoOverlay}></div>}
+            {!propertyId && <div className={theme.miniPseudoOverlay}><h6>please select property</h6></div>}
               <div className={propertyId ? '' : theme.blur}>
               <button className={theme.submitButton} type="submit">Generate</button>
 

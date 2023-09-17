@@ -83,8 +83,6 @@ const ScribeForm = () => {
     e.preventDefault();
 
     setTaskId('');
-
-    setIsTaskSynced(false);
   
     if (!audioBlob && !file) {
       alert('You need to either record audio or upload a file.');
@@ -95,6 +93,8 @@ const ScribeForm = () => {
       alert('Property ID is required.');
       return;
     }
+
+    setIsTaskSynced(false);
   
     const formData = new FormData();
   
