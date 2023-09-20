@@ -4,7 +4,7 @@
   width: 100%;
   padding: 10px;
   display: flex;
-  flex-direction: column;  /* Adjusts children to be stacked vertically */
+  flex-direction: column; 
   gap: 10px;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .loading {
-  background-color: yellow;
+  background-color: #DBFF00;
   animation: fadeInOut 2s infinite;
 }
 

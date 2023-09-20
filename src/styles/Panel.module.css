@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: flex-start; 
   align-items: center;
-  border-radius: 3rem;
+  border-radius: 1rem;
   box-shadow: 2px 2px 15px 15px rgba(0, 0, 0, 0.25);
   margin-bottom: 10vh;
 }
@@ -17,7 +17,7 @@
   width: 90%;
   font-size: 42px;
   color: #2D2962;
-  font-family: Sunflower;
+  font-family: 'Lexend';
   font-style: normal;
   font-weight: 700;
   line-height: normal;

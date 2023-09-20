@@ -47,7 +47,7 @@ const TaskChecker = ({ taskId, taskType }: { taskId: string | null, taskType: st
       <div className={styles.statusRow}>
         <div className={styles.circle + ' ' + styles[taskState.toLowerCase()]}></div>
         { taskResult && taskType && <h3>{ funcs[taskType] } is finished!</h3> }
-        { taskState === "LOADING" && taskType && <h3>{ funcs[taskType] } is loading.</h3> }
+        { taskState === "LOADING" && taskType && <h3>{ funcs[taskType] } is  pending completion.</h3> }
         { taskState === "FAILURE" && taskType && <h3>{ funcs[taskType] } failed. Please try again.</h3> }  
       </div>
       {

@@ -83,7 +83,6 @@ const PropertyInfoCard = ({ isOpen, property }: { isOpen: boolean, property: any
           <p>Agent: {property.agent}</p>
         </div>
         <div>
-          {/* {convertUnixTimestampToDate(property.uploaded_at)} */}
           { lastUpdated && <div>Last modified: {timeSince(lastUpdated)}</div> }
           { propertyInfo && !lastUpdated && <div>{"No modifications"}</div> }
         </div>

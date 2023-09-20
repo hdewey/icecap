@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--primary-gradient);
 }
 
 .header {
@@ -11,13 +12,14 @@
   align-items: center;
   padding: 1rem;
   color: var(--primary-white);
-  width: var(--content-width)
+  width: var(--content-width);
 }
 
 .title {
   margin: 0;
   padding: 0;
   color: var(--primary-white) !important;
+  /* background: var(--primary-white) !important; */
   font-size: 62px;
 }
 

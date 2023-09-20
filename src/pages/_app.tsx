@@ -1,7 +1,13 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+
+import { ChakraProvider } from "@chakra-ui/react";
+
 import Header from '../components/shared/Header';
+import theme from '../styles/theme';
+import Layout from '../components/shared/Layout';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -10,8 +16,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Header title={"snowcap"} />
-        <Component {...pageProps} />
+        <ChakraProvider theme={theme}>
+          <Layout>
+            <Header title={"snowcap"} />
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
       </QueryClientProvider>
     </>
   )

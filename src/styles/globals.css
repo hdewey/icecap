@@ -1,5 +1,5 @@
 @import 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&display=swap';
 
 html,
 body {
@@ -20,7 +20,7 @@ a {
 }
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Sunflower', sans-serif;
+  font-family: 'Lexend', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -36,6 +36,7 @@ h1,h2,h3,h4,h5,h6 {
   --primary-light: rgba(139, 144, 255, 0.65);
 
   --primary-gradient: linear-gradient(116deg, #2D2962 1.72%, #453BB7 89.93%);
+  --primary-reverse-gradient: linear-gradient(293deg, #2D2962 7.18%, #453BB7 97.91%);
 
   --border: 2px solid #2D2962;
   --box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.2);
