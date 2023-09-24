@@ -70,7 +70,7 @@ const TranscribeDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
                   gap={'20px'}
                   py={2}
                 > 
-                  <Text textStyle={'h2'}>{index + 1}</Text>
+                  <Text textStyle={'h2'}>{propertyInfo.transcripts.length - index}</Text>
                   <Text textStyle={'h3'}>created on {convertUnixTimestampToDate(transcript.upload_time)}</Text>
                   <DeleteButton id={transcript._id} collection={"transcripts"} refetch={refetch} message={"Are you sure you'd like to delete this transcript?"} />
                 </Box>

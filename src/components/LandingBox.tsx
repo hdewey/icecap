@@ -14,7 +14,6 @@ const LandingBox = () => {
         alignItems={"center"}
         gap={100}
       >
-
         <Wrapper cta={"Add Property"} link={"/create"}><Icon as={AddPropertyIcon} w={300} h={300} /></Wrapper>
         <Wrapper cta={"Upload Descriptions"} link={"/upload"}><Icon as={UploadPropertyIcon} w={300} h={300}  /></Wrapper>
         <Wrapper cta={"Manage Properties"} link={"/properties"}><Icon as={ListPropertyIcon} w={300} h={300}  /></Wrapper>
