@@ -32,13 +32,13 @@
 }
 
 .title a {
-  color: var(--primary-white); 
+  color: var(--primary-dark); 
   text-decoration: none;
 }
 
 .back {
   position: absolute;
-  color: var(--primary-white); 
+  color: var(--primary-dark); 
   left: 30px;
   top: 4rem;
 }
