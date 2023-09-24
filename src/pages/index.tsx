@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Panel from '../components/shared/Panel'
 import Link from 'next/link'
+import LandingBox from '../components/LandingBox'
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <Panel title={"home"}>
-          <h1 className={styles.title}>
+          {/* <h1 className={styles.title}>
             welcome to <a>snowcap</a>!
           </h1>
 
@@ -28,7 +29,8 @@ const Home: NextPage = () => {
           <p className={styles.description}>
             You can also view created {' '}
             <Link href='/properties'>properties</Link>{'.'}
-          </p>
+          </p> */}
+          <LandingBox />
         </Panel>
       </main>
     </div>

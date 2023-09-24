@@ -47,6 +47,9 @@ const PropertyCard = ({ propertyId }: { propertyId: string }) => {
         borderRadius={"var(--border-radius)"}
         position="relative"
         boxShadow={"var(--box-shadow)"}
+        _hover={{
+          border: "var(--border)"
+        }}
         cursor={isOpen ? "" : "pointer"}
         onClick={!isOpen ? onToggle : undefined}
         mb={isOpen ? 0 : 5}

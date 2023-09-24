@@ -95,7 +95,7 @@ const Header = ({ title }: { title: string }) => {
         </div>
       </div>
     </div>
-      {isScrolled && <div style={{ height: "16vh", width: "100%", background: 'var(--primary-white)'}}></div>}
+      {isScrolled && <div style={{ height: (headerHeight * 1.1) + "px", width: "100%", background: 'var(--primary-white)'}}></div>}
     </>
   );
 };
