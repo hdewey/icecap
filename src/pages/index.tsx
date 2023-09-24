@@ -22,13 +22,12 @@ const Home: NextPage = () => {
 
           <p className={styles.description}>
             Get started by {' '}
-            <Link href='/create'>creating</Link>{', '}
-            <Link href='/upload'>uploading</Link>{', or '}<Link href='/generate'>generating</Link>
+            <Link href='/create'>creating a property</Link>!
           </p>
 
           <p className={styles.description}>
-            You can also view the {' '}
-            <Link as={'a'} href='/log'>log</Link>{'.'}
+            You can also view created {' '}
+            <Link href='/properties'>properties</Link>{'.'}
           </p>
         </Panel>
       </main>

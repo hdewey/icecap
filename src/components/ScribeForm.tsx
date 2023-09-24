@@ -6,6 +6,7 @@ import RecordRTC from 'recordrtc';
 import TaskChecker from './TaskChecker';
 import useProperties from '../hooks/useProperties';
 import Loader from './Loader';
+import { Button, Spinner, Text } from '@chakra-ui/react';
 
 const ScribeForm = () => {
   const [file, setFile] = useState<File | Blob | null>(null);
@@ -127,12 +128,6 @@ const ScribeForm = () => {
     }
   };
 
-  useEffect(() => {
-    if (!isTaskSynced && taskId !== '') {
-      setIsTaskSynced(true);
-    }
-  }, [taskId] )
-
   return (
     <>
       {
@@ -157,13 +152,10 @@ const ScribeForm = () => {
             </select>
 
             <div className={!propertyId ? theme.overlay : ''}>
-            {!propertyId && <div className={theme.pseudoOverlay}></div>}
-            {!propertyId && <div className={theme.miniPseudoOverlay}><h6>please select property</h6></div>}
-              <div className={propertyId ? '' : theme.blur}>
                 <div className={styles.actionRow}>
                     {isRecording ? (
                       <button className={theme.button} type="button" onClick={stopRecording}>
-                        Stop Recording
+                        Stop
                       </button>
                     ) : (
                       <button className={theme.button} type="button" onClick={startRecording}>
@@ -188,18 +180,30 @@ const ScribeForm = () => {
                         </>
                       ) : (audioURL && <audio className={styles.audio} src={audioURL} controls></audio>) 
                     }
-                    
                 </div>
-              
-              <button className={theme.submitButton} type="submit" disabled={!isTaskSynced}>Submit</button>  
-              </div>
+                <Button
+                  mt={5}
+                  bg={"var(--primary-dark)"}
+                  color={"var(--primary-white)"}
+                  transition={"all ease 0.3s"}
+                  border={"var(--border)"}
+                  _hover={{
+                    bg: "var(--primary-white)",
+                    color: "var(--primary-dark)",
+                    border: "var(--border)",
+                  }}
+                  borderRadius={"30px"}
+                  onClick={handleSubmit}
+                  p={5}
+                  py={6}
+                >
+                  { <Text textStyle={'h2'}>Upload</Text>   }
+                </Button>
             </div>
-              
           </form>
           </div>
-
           {
-            (taskId || !isTaskSynced) && <TaskChecker taskId={taskId} taskType={'scribe'}  />
+            (taskId) && <TaskChecker taskId={taskId} taskType={'scribe'} refetch={() => setIsTaskSynced(true)}  />
           }
         </>
         ) : <Loader />

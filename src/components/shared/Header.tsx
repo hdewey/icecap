@@ -6,13 +6,50 @@ import Link from 'next/link';
 const pages = [
   { name: 'create', path: '/create' },
   { name: 'upload', path: '/upload' },
-  { name: 'generate', path: '/generate'},
-  { name: 'log', path: '/log' }
+  { name: 'properties', path: '/properties' }
 ];
 
 const Header = ({ title }: { title: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = React.useRef<HTMLDivElement | null>(null);
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const headerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+
+    const handleResize = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+      const handleScroll = () => {
+          const offsetY = window.scrollY;
+          if (offsetY > 60) {
+              setIsScrolled(true);
+          } else {
+              setIsScrolled(false);
+          }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -29,8 +66,9 @@ const Header = ({ title }: { title: string }) => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+<>
+    <div className={`${styles.container} ${isScrolled ? styles.containerScrolled : ''}`}>
+      <div className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`} ref={headerRef} >
         <Link href="/"><h1 className={styles.title}>{title}</h1></Link>
         <div className={styles.menu} ref={menuRef}>
           {isMenuOpen ? (
@@ -57,6 +95,8 @@ const Header = ({ title }: { title: string }) => {
         </div>
       </div>
     </div>
+      {isScrolled && <div style={{ height: "16vh", width: "100%", background: 'var(--primary-white)'}}></div>}
+    </>
   );
 };
 

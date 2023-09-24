@@ -1,18 +1,22 @@
 .taskBox {
-  border: var(--border);
   margin-top: 4vh;
   width: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column; 
   gap: 10px;
+  border-radius: 30px;
+  box-shadow: var(--box-shadow);
+  color: var(--primary-white);
+
+  background: var(--primary-reverse-gradient)
 }
 
 .statusRow {
-  padding: 10px;
+  padding: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .circle {
@@ -22,6 +26,7 @@
   display: inline-block;
   border: 2px solid black;
   box-shadow: var(--box-shadow);
+  filter: blur(3px);
 }
 
 .loading {

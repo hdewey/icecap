@@ -1,6 +1,6 @@
 .container {
   padding: 0 2rem;
-  background: var(--primary-gradient);
+  background: var(--primary-white);
 }
 
 .main {
@@ -32,13 +32,13 @@
 }
 
 .title a {
-  color: var(--primary-dark); 
+  color: var(--primary-white); 
   text-decoration: none;
 }
 
 .back {
   position: absolute;
-  color: var(--primary-dark); 
+  color: var(--primary-white); 
   left: 30px;
   top: 4rem;
 }
@@ -50,7 +50,7 @@
 }
 
 .description a {
-  color: var(--primary-dark); 
+  color: var(--primary-white); 
   font-weight: 700;
   text-decoration: none; 
 }

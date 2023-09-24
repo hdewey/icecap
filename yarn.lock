@@ -1470,6 +1470,11 @@
     "rimraf" "3.0.2"
     "unload" "2.2.0"
 
+"bson-objectid@^2.0.4":
+  "integrity" "sha512-vgnKAUzcDoa+AeyYwXCoHyF2q6u/8H46dxu5JN+4/TZeq/Dlinn0K6GvxsCLb3LHUJl0m/TLiEK31kUwtgocMQ=="
+  "resolved" "https://registry.npmjs.org/bson-objectid/-/bson-objectid-2.0.4.tgz"
+  "version" "2.0.4"
+
 "bson@^6.1.0":
   "integrity" "sha512-yiQ3KxvpVoRpx1oD1uPz4Jit9tAVTJgjdmjDKtUErkOoL9VNoF8Dd58qtAOL5E40exx2jvAT9sqdRSK/r+SHlA=="
   "resolved" "https://registry.npmjs.org/bson/-/bson-6.1.0.tgz"

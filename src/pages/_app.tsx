@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app'
 import { ChakraProvider } from "@chakra-ui/react";
 
 import Header from '../components/shared/Header';
-import theme from '../styles/theme';
+import theme from '../theme/theme';
 import Layout from '../components/shared/Layout';
 
 

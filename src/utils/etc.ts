@@ -13,9 +13,15 @@ export function timeSince(date: Date) {
     const currentInterval = seconds / intervals[i].duration;
     if (currentInterval >= 1) {
       const value = Math.floor(currentInterval);
-      return `${value} ${intervals[i].name}${value !== 1 ? 's' : ''} ago`;
+      return `edited ${value} ${intervals[i].name}${value !== 1 ? 's' : ''} ago`;
     }
   }
 
-  return Math.floor(seconds) + " seconds ago";
+  return "edited " + Math.floor(seconds) + " seconds ago";
+}
+
+
+export function convertUnixTimestampToDate(unixTimestamp: number) {
+  const date = new Date(unixTimestamp * 1000); 
+  return `${date.toDateString()} ${date.toTimeString().split(' ')[0]}`; 
 }
