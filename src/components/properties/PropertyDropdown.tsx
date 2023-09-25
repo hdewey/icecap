@@ -56,7 +56,7 @@ const TranscribeDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
       <Box>
         <Text textStyle={'h2'} mb={5}>Edit Transcripts</Text>
         { 
-          propertyInfo.transcripts.length > 0 && propertyInfo.transcripts.slice().reverse().map((transcript, index) => {
+          propertyInfo.transcripts.length > 0 && propertyInfo.transcripts.map((transcript, index) => {
             return (
               <Box
                 mb={4}
@@ -70,18 +70,17 @@ const TranscribeDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
                   gap={'20px'}
                   py={2}
                 > 
-                  <Text textStyle={'h2'}>{propertyInfo.transcripts.length - index}</Text>
+                  <Text textStyle={'h2'}>{index + 1}</Text>
                   <Text textStyle={'h3'}>created on {convertUnixTimestampToDate(transcript.upload_time)}</Text>
                   <DeleteButton id={transcript._id} collection={"transcripts"} refetch={refetch} message={"Are you sure you'd like to delete this transcript?"} />
                 </Box>
                 <EditBox 
                   collection={'transcripts'} 
-                  key={index} 
-                  content={transcript.transcription} 
-                  id={transcript._id} 
+                  key={index}
+                  content={transcript.transcription}
+                  id={transcript._id}
                   key_name={'transcription'} 
                 />
-
               </Box>
             )
           })
