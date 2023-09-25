@@ -20,6 +20,7 @@ const Panel: React.FC<PanelProps> = ({ children, title }) => {
             textDecorationLine={"underline"}
             lineHeight={"normal"}
             color={"var(--primary-dark)"}
+            fontFamily={"Lexend"}
          >{title}</Text>
          <div className={styles.panelContent}>
             {children}
