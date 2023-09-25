@@ -69,8 +69,9 @@ h1,h2,h3,h4,h5,h6 {
 
   --border-radius: 30px;
 
-
-
+  @media (min-width: 600px) {
+    --content-width: 90vw;
+  }
   @media (max-width: 600px) {
     --content-width: 95vw;
   }
