@@ -19,7 +19,7 @@ const Upload: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Panel title={"upload"}>
+        <Panel title={"record"}>
           <ScribeForm />
         </Panel>
       </main>

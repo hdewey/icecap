@@ -58,7 +58,7 @@
 }
 
 .inputTitle {
-  font-size: 24px;
+  font-size: 1.6rem;
   font-weight: bold;
   color: var(--primary-dark);
 }
@@ -75,7 +75,7 @@
   background: var(--primary-light);
   color: var(--primary-dark);
   appearance: none; 
-  font-size: 20px;
+  font-size: 1.6rem;
   font-weight: 400;
   transition: background-color ease 0.3s;
 }
@@ -92,6 +92,7 @@
 .textInput::placeholder {
   color: var(--primary-white); /* Choose your desired color */
   font-style: italic;
+
 }
 
 .blur {

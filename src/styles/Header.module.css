@@ -1,4 +1,6 @@
 .container {
+  position: absolute;
+  overflow-x: hidden;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -17,9 +19,10 @@
   margin-bottom: 30px;
   border-radius: 30px;
   padding: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
-  transition: all ease 0.1s;
+  padding-left: 4vw;
+  padding-right: 4vw;
+
+  transition: all ease 0.3s;
 }
 
 .headerScrolled {
@@ -27,8 +30,8 @@
   top: 0px;
   width: 100%;
   padding: 5px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 3rem;
+  padding-right: 3rem;
   backdrop-filter: blur(10px);
   z-index: 1000;
   margin-top: 0 !important;

@@ -1,5 +1,5 @@
-import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
-import { Box, Button, Collapse, Icon, useDisclosure, Text, HStack, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, TabIndicator, Skeleton } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
+import { Box, Collapse, Icon, useDisclosure, Text, HStack, Stack } from "@chakra-ui/react";
 import PropertyDropdown from "./PropertyDropdown";
 import DeleteButton from "../shared/actions/DeleteButton";
 import usePropertyInfo from "../../hooks/usePropertyInfo";

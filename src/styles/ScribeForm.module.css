@@ -22,14 +22,22 @@
 .fileupload:focus + label, 
 .fileupload + label:hover {
   background-color: var(--primary-light);
-  color: ivory;
+  color: ivory !important;
 }
 
 .audio {
 }
 
-.uploadLabelUploaded:hover {
-  background-color: var(--primary-light);
+.uploadLabelUploaded {
+  background-color: var(--primary-dark);
+  color: var(--primary-white) !important; 
+}
+
+.uploadLabel, .uploadLabelUploaded {
+  padding: 10px 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .actionRow {
@@ -43,12 +51,4 @@
 .orText {
   color: var(--primary-dark);
   font-size: 30px;
-}
-
-.uploadLabel, .uploadLabelUploaded {
-  font-size: 20px;
-  padding: 10px 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

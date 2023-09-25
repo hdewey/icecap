@@ -6,7 +6,7 @@ import RecordRTC from 'recordrtc';
 import TaskChecker from './TaskChecker';
 import useProperties from '../hooks/useProperties';
 import Loader from './Loader';
-import { Button, Spinner, Text } from '@chakra-ui/react';
+import { Box, Button, Spinner, Text } from '@chakra-ui/react';
 
 const ScribeForm = () => {
   const [file, setFile] = useState<File | Blob | null>(null);
@@ -151,15 +151,20 @@ const ScribeForm = () => {
               }
             </select>
 
-            <div className={!propertyId ? theme.overlay : ''}>
-                <div className={styles.actionRow}>
+                <Box
+                  flexDirection={["column", "column", "row", "row"]}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"flex-start"}
+                  w={'100%'}
+                >
                     {isRecording ? (
                       <button className={theme.button} type="button" onClick={stopRecording}>
-                        Stop
+                        <Spinner /> <Text textStyle={'h3'}>Stop</Text>
                       </button>
                     ) : (
                       <button className={theme.button} type="button" onClick={startRecording}>
-                        Start Recording
+                        <Text textStyle={'h3'}>Start Recording</Text>
                       </button>
                     )}
                     {
@@ -175,31 +180,33 @@ const ScribeForm = () => {
                           <label 
                             className={file ? styles.uploadLabelUploaded : styles.uploadLabel} 
                             htmlFor="fileUploadInput">
-                            {file ? file.name : "Upload Audio"}
+                            <Text textStyle={'h3'}>{file ? file.name : "Upload Audio"}</Text>
                           </label>
                         </>
                       ) : (audioURL && <audio className={styles.audio} src={audioURL} controls></audio>) 
                     }
-                </div>
-                <Button
-                  mt={5}
-                  bg={"var(--primary-dark)"}
-                  color={"var(--primary-white)"}
-                  transition={"all ease 0.3s"}
-                  border={"var(--border)"}
-                  _hover={{
-                    bg: "var(--primary-white)",
-                    color: "var(--primary-dark)",
-                    border: "var(--border)",
-                  }}
-                  borderRadius={"30px"}
-                  onClick={handleSubmit}
-                  p={5}
-                  py={6}
-                >
-                  { <Text textStyle={'h2'}>Submit</Text>   }
-                </Button>
-            </div>
+                </Box>
+                {
+                  propertyId && 
+                    <Button
+                      mt={5}
+                      bg={"var(--primary-dark)"}
+                      color={"var(--primary-white)"}
+                      transition={"all ease 0.3s"}
+                      border={"var(--border)"}
+                      _hover={{
+                        bg: "var(--primary-white)",
+                        color: "var(--primary-dark)",
+                        border: "var(--border)",
+                      }}
+                      borderRadius={"30px"}
+                      onClick={handleSubmit}
+                      p={5}
+                      py={6}
+                    >
+                    { isTaskSynced ? <Text textStyle={'h3'}>Submit</Text> : <Spinner />  }
+                  </Button>
+                }
           </form>
           </div>
           {

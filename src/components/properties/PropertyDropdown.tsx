@@ -60,7 +60,7 @@ const TranscribeDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
             return (
               <Box
                 mb={4}
-                key={index}
+                key={transcript._id}
               >
                 <Box
                   width={'100%'}
@@ -135,7 +135,7 @@ const ResultsDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
             return (
               <Box
                 mb={4}
-                key={index}
+                key={description._id}
               >
                 <Box
                   width={'100%'}

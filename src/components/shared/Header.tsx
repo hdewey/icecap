@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../styles/Header.module.css';
 import ActiveLink from './ActiveLink';
 import Link from 'next/link';
+import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 const pages = [
   { name: 'create', path: '/create' },
-  { name: 'upload', path: '/upload' },
+  { name: 'record', path: '/record' },
   { name: 'properties', path: '/properties' }
 ];
 
 const Header = ({ title }: { title: string }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = React.useRef<HTMLDivElement | null>(null);
-
   const [isScrolled, setIsScrolled] = useState(false);
-
   const [headerHeight, setHeaderHeight] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const headerRef = React.useRef<HTMLDivElement>(null);
+
+  const breakpoint = useBreakpointValue({ base: "base", md: "md" }); 
 
   useEffect(() => {
     if (headerRef.current) {
@@ -39,7 +40,7 @@ const Header = ({ title }: { title: string }) => {
   useEffect(() => {
       const handleScroll = () => {
           const offsetY = window.scrollY;
-          if (offsetY > 60) {
+          if (offsetY > (headerHeight)) {
               setIsScrolled(true);
           } else {
               setIsScrolled(false);
@@ -51,53 +52,75 @@ const Header = ({ title }: { title: string }) => {
       return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
-<>
-    <div className={`${styles.container} ${isScrolled ? styles.containerScrolled : ''}`}>
-      <div className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`} ref={headerRef} >
-        <Link href="/"><h1 className={styles.title}>{title}</h1></Link>
-        <div className={styles.menu} ref={menuRef}>
-          {isMenuOpen ? (
-            <ul className={styles.mobileNav}>
-              {pages.map((page) => (
-                <li key={page.path}>
-                  <ActiveLink href={page.path} activeClassName={styles.activeLink}>
-                    <a>{page.name}</a>
-                  </ActiveLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className={styles.desktopNav}>
-              {pages.map((page, index) => (
-                <React.Fragment key={page.path}>
-                  <ActiveLink href={page.path} activeClassName={styles.activeLink}>
-                    <span>{page.name}</span>
-                  </ActiveLink>
-                </React.Fragment>
-              ))}
-            </div>
-          )}
+    <>
+      <div className={`${styles.container} ${isScrolled ? styles.containerScrolled : ''}`}>
+        <div className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`} ref={headerRef}>
+          <Link href="/"><Text fontFamily={"Lexend"} textStyle={"h1"} fontSize={"4rem"}>{title}</Text></Link>
+          {breakpoint === "md" ? <DesktopNav /> : <MobileNav isOpen={isOpen} onOpen={() => setIsOpen(true)} onClose={() => setIsOpen(false)} />}
         </div>
       </div>
-    </div>
-      {isScrolled && <div style={{ height: (headerHeight * 1.1) + "px", width: "100%", background: 'var(--primary-white)'}}></div>}
+
+      <Box style={{ height: (headerHeight * 1.5) + "px", width: "100vw", background: 'var(--primary-white)'}} zIndex={-1}></Box>
     </>
   );
 };
-
 export default Header;
+
+const DesktopNav = () => {
+  return (
+    <Flex className="desktopNav">
+      {pages.map((page) => (
+        <ActiveLink key={page.path} href={page.path} activeClassName="activeLink">
+          <Text color="var(--primary-dark)" fontWeight="bold" mr={4} _hover={{ textDecoration: 'underline' }}>
+            {page.name}
+          </Text>
+        </ActiveLink>
+      ))}
+    </Flex>
+  );
+}
+
+const MobileNav = ({ isOpen, onOpen, onClose }: { isOpen: boolean, onOpen: () => void, onClose: () => void }) => {
+  return (
+    <>
+      <Button 
+        onClick={onOpen} 
+        variant="unstyled" 
+        p={2}
+        _hover={{
+            backgroundColor: "var(--primary-dark)"
+        }}
+      >
+        <HamburgerIcon 
+            color="var(--primary-dark)" 
+            _hover={{
+                color: "var(--primary-white)"
+            }} 
+            boxSize={10} 
+        />
+      </Button>
+
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerBody>
+              <VStack spacing={4}>
+                {pages.map((page) => (
+                  <ActiveLink key={page.path} href={page.path} activeClassName="activeLink">
+                    <Text onClick={onClose} color="var(--primary-dark)" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>
+                      {page.name}
+                    </Text>
+                  </ActiveLink>
+                ))}
+              </VStack>
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
+  );
+}
+
+
+

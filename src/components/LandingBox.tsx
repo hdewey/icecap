@@ -9,15 +9,15 @@ const LandingBox = () => {
   return (
     <>
       <Box
+        flexDirection={["column", "column", "row", "row"]}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        gap={100}
+        gap={"10vw"}
       >
-        <Wrapper cta={"Add Property"} link={"/create"}><Icon as={AddPropertyIcon} w={300} h={300} /></Wrapper>
-        <Wrapper cta={"Upload Descriptions"} link={"/upload"}><Icon as={UploadPropertyIcon} w={300} h={300}  /></Wrapper>
-        <Wrapper cta={"Manage Properties"} link={"/properties"}><Icon as={ListPropertyIcon} w={300} h={300}  /></Wrapper>
-        
+        <Wrapper cta={"Add Property"} link={"/create"}><Icon as={AddPropertyIcon} w={200} h={200} /></Wrapper>
+        <Wrapper cta={"Record Descriptions"} link={"/record"}><Icon as={UploadPropertyIcon} w={200} h={200}  /></Wrapper>
+        <Wrapper cta={"Manage Properties"} link={"/properties"}><Icon as={ListPropertyIcon} w={200} h={200}  /></Wrapper>
       </Box> 
     </>
   )
@@ -37,7 +37,7 @@ const Wrapper = ({ cta, link, children }: { cta: string, link: string, children:
         borderRadius={"var(--border-radius)"}
         transition={"all ease 0.3s"}
         _hover={{
-          borderRadius: "15px"
+          borderRadius: "60px"
         }}
       >
         { children }

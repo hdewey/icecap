@@ -10,13 +10,14 @@ const CreatePropertyForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setPropertyAdded(false);
-    setLoading(true);
 
     if (!propertyName || !agent) {
       alert('Both property name and agent are required.');
       return;
     }
+
+    setPropertyAdded(false);
+    setLoading(true);
   
     try {
       const response = await fetch('/api/property', {
