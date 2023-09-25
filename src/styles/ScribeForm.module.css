@@ -1,5 +1,5 @@
 .container {
-  width: 90%;
+  width: 100%;
 }
 
 .fileupload {
@@ -26,6 +26,7 @@
 }
 
 .audio {
+  margin-top: "3vh"
 }
 
 .uploadLabelUploaded {

@@ -69,10 +69,10 @@ export default Header;
 
 const DesktopNav = () => {
   return (
-    <Flex className="desktopNav">
+    <Flex className={styles.desktopNav}>
       {pages.map((page) => (
-        <ActiveLink key={page.path} href={page.path} activeClassName="activeLink">
-          <Text color="var(--primary-dark)" fontWeight="bold" mr={4} _hover={{ textDecoration: 'underline' }}>
+        <ActiveLink key={page.path} href={page.path} activeClassName={styles.activeLink}>
+          <Text color="var(--primary-dark)" mr={4} >
             {page.name}
           </Text>
         </ActiveLink>
@@ -104,11 +104,11 @@ const MobileNav = ({ isOpen, onOpen, onClose }: { isOpen: boolean, onOpen: () =>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerBody>
-              <VStack spacing={4}>
+            <DrawerBody bgColor={"var(--primary-white)"} h={'100%'}>
+              <VStack spacing={10} my={'10vh'} >
                 {pages.map((page) => (
-                  <ActiveLink key={page.path} href={page.path} activeClassName="activeLink">
-                    <Text onClick={onClose} color="var(--primary-dark)" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>
+                  <ActiveLink key={page.path} href={page.path} activeClassName={styles.activeLink}>
+                    <Text onClick={onClose}>
                       {page.name}
                     </Text>
                   </ActiveLink>

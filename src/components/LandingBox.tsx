@@ -1,4 +1,4 @@
-import { Box, Icon, Text } from "@chakra-ui/react"
+import { Box, Icon, SimpleGrid, Text } from "@chakra-ui/react"
 
 import { AddPropertyIcon, ListPropertyIcon, UploadPropertyIcon } from "./icons/home";
 import Link from "next/link";
@@ -8,17 +8,15 @@ const LandingBox = () => {
 
   return (
     <>
-      <Box
-        flexDirection={["column", "column", "row", "row"]}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={"10vw"}
+      <SimpleGrid
+        columns={[2, 2, 3, 4]}
+        spacing={20}
+        w={'100%'}
       >
-        <Wrapper cta={"Add Property"} link={"/create"}><Icon as={AddPropertyIcon} w={200} h={200} /></Wrapper>
-        <Wrapper cta={"Record Descriptions"} link={"/record"}><Icon as={UploadPropertyIcon} w={200} h={200}  /></Wrapper>
-        <Wrapper cta={"Manage Properties"} link={"/properties"}><Icon as={ListPropertyIcon} w={200} h={200}  /></Wrapper>
-      </Box> 
+        <Wrapper cta={"Add Property"} link={"/create"}><Icon as={AddPropertyIcon} w={[100, 100, 200]} h={[100, 100, 200]} /></Wrapper>
+        <Wrapper cta={"Record Descriptions"} link={"/record"}><Icon as={UploadPropertyIcon} w={[100, 100, 200]} h={[100, 100, 200]}  /></Wrapper>
+        <Wrapper cta={"Manage Properties"} link={"/properties"}><Icon as={ListPropertyIcon} w={[100, 100, 200]} h={[100, 100, 200]}  /></Wrapper>
+      </SimpleGrid> 
     </>
   )
 }

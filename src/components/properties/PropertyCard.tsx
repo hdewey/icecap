@@ -102,8 +102,8 @@ const PropertyCard = ({ propertyId }: { propertyId: string }) => {
             p={2}
             borderRadius={'15px'}
             transition={"background,color ease 0.3s"}
-            top={8} 
-            right={8}
+            top={3} 
+            right={3}
             w={12} 
             h={12}
             cursor="pointer"

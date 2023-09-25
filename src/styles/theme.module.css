@@ -64,9 +64,8 @@
 }
 
 .textInput {
+  width: 100%;
   cursor: pointer;
-  max-width: 400px;
-  width: 80%;
   margin: 0 0;
   padding: 10px 20px;
   margin-bottom: 30px;
@@ -75,7 +74,7 @@
   background: var(--primary-light);
   color: var(--primary-dark);
   appearance: none; 
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   transition: background-color ease 0.3s;
 }
@@ -122,6 +121,7 @@
 }
 
 .liveTextBox {
+  font-size: 1.2rem;
   padding: 10px;
   padding-top: 30px;
   white-space: pre-line;

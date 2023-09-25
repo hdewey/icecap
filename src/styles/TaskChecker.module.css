@@ -27,6 +27,7 @@
   border: 2px solid black;
   box-shadow: var(--box-shadow);
   filter: blur(3px);
+
 }
 
 .loading {
@@ -45,6 +46,7 @@
 .taskResult {
   padding: 10px;
   white-space: pre-line;
+  font-size: 1.3rem;
 }
 
 @keyframes fadeInOut {

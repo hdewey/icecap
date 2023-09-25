@@ -6,7 +6,7 @@ import RecordRTC from 'recordrtc';
 import TaskChecker from './TaskChecker';
 import useProperties from '../hooks/useProperties';
 import Loader from './Loader';
-import { Box, Button, Spinner, Text } from '@chakra-ui/react';
+import { Box, Button, HStack, Spinner, Text } from '@chakra-ui/react';
 
 const ScribeForm = () => {
   const [file, setFile] = useState<File | Blob | null>(null);
@@ -136,6 +136,7 @@ const ScribeForm = () => {
             <div className={styles.container}>
 
             <form className={theme.form} onSubmit={handleSubmit}>
+            <Text textStyle={"h3"} mb={4}>{"Property Name:"}</Text>
             <select
               className={theme.textInput}
               value={propertyId}
@@ -150,17 +151,17 @@ const ScribeForm = () => {
                 ))
               }
             </select>
-
                 <Box
                   flexDirection={["column", "column", "row", "row"]}
                   display={"flex"}
-                  justifyContent={"center"}
-                  alignItems={"flex-start"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
                   w={'100%'}
+                  my={"4vh"}
                 >
                     {isRecording ? (
                       <button className={theme.button} type="button" onClick={stopRecording}>
-                        <Spinner /> <Text textStyle={'h3'}>Stop</Text>
+                        <HStack><Spinner /> <Text textStyle={'h3'}>Stop</Text></HStack>
                       </button>
                     ) : (
                       <button className={theme.button} type="button" onClick={startRecording}>
@@ -183,7 +184,7 @@ const ScribeForm = () => {
                             <Text textStyle={'h3'}>{file ? file.name : "Upload Audio"}</Text>
                           </label>
                         </>
-                      ) : (audioURL && <audio className={styles.audio} src={audioURL} controls></audio>) 
+                      ) : (audioURL && <Box my={4}><audio className={styles.audio} src={audioURL} controls></audio></Box>) 
                     }
                 </Box>
                 {
