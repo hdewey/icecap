@@ -4,8 +4,6 @@ import { AddPropertyIcon, ListPropertyIcon, UploadPropertyIcon } from "./icons/h
 import Link from "next/link";
 
 const LandingBox = () => {
-
-
   return (
     <>
       <SimpleGrid
@@ -16,12 +14,10 @@ const LandingBox = () => {
         <Wrapper cta={"Add Property"} link={"/create"}><Icon as={AddPropertyIcon} w={[100, 100, 200]} h={[100, 100, 200]} /></Wrapper>
         <Wrapper cta={"Record Descriptions"} link={"/record"}><Icon as={UploadPropertyIcon} w={[100, 100, 200]} h={[100, 100, 200]}  /></Wrapper>
         <Wrapper cta={"Manage Properties"} link={"/properties"}><Icon as={ListPropertyIcon} w={[100, 100, 200]} h={[100, 100, 200]}  /></Wrapper>
-      </SimpleGrid> 
+      </SimpleGrid>
     </>
   )
 }
-
-
 
 export default LandingBox;
 

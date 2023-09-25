@@ -66,7 +66,7 @@ const TaskChecker = ({ taskId, taskType, refetch }: { taskId: string | null, tas
             borderColor={"var(--primary-white)"}
           />
         { taskResult && taskType && <Text textStyle={"h3"} color={"var(--primary-white)"}>{ funcs[taskType] } is finished!</Text> }
-        { taskState === "LOADING" && taskType && <Text textStyle={"h3"} color={"var(--primary-white)"}>{ funcs[taskType] } is  pending.</Text> }
+        { taskState === "LOADING" && taskType && <Text textStyle={"h3"} color={"var(--primary-white)"}>{ funcs[taskType] } is processing.</Text> }
         { taskState === "FAILURE" && taskType && <Text textStyle={"h3"} color={"var(--primary-white)"}>{ funcs[taskType] } failed. Try again. </Text> }  
       </div>
       {

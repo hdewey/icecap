@@ -89,9 +89,8 @@
 }
 
 .textInput::placeholder {
-  color: var(--primary-white); /* Choose your desired color */
+  color: var(--primary-white);
   font-style: italic;
-
 }
 
 .blur {

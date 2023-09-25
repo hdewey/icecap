@@ -136,13 +136,13 @@ const ScribeForm = () => {
             <div className={styles.container}>
 
             <form className={theme.form} onSubmit={handleSubmit}>
-            <Text textStyle={"h3"} mb={4}>{"Property Name:"}</Text>
+            <Text textStyle={"h3"} mb={4} color={"var(--primary-dark)"}>{"Property:"}</Text>
             <select
               className={theme.textInput}
               value={propertyId}
               onChange={(e) => setPropertyId(e.target.value)}
             >
-              <option value="">Select a Property</option>
+              <option value={""}>{"Select a Property"}</option>
               {
                 properties && properties.map((property: any) => (
                   <option key={property._id} value={property._id}>
