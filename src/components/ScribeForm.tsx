@@ -197,7 +197,7 @@ const ScribeForm = () => {
                   p={5}
                   py={6}
                 >
-                  { <Text textStyle={'h2'}>Upload</Text>   }
+                  { <Text textStyle={'h2'}>Submit</Text>   }
                 </Button>
             </div>
           </form>
