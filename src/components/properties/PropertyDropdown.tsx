@@ -110,7 +110,7 @@ const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
               gap={'20px'}
               py={2}
             > 
-              <Text textStyle={'h2'}>Final prompt:</Text>
+              <Text textStyle={'h2'}>Edit Prompt:</Text>
             </Box>
             {prompt && <EditBox 
               collection={'prompts'} 

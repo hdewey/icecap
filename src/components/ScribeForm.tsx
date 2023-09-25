@@ -177,6 +177,7 @@ const ScribeForm = () => {
                             className={styles.fileupload}
                             type="file"
                             onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+                            accept={'.mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm'}
                           />
                           <label 
                             className={file ? styles.uploadLabelUploaded : styles.uploadLabel} 
