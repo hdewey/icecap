@@ -7,12 +7,15 @@ import axios from "../../../utils/axios"
 import { Badge, Button, Spinner, Text } from '@chakra-ui/react';
 import usePropertyInfo from '../../../hooks/usePropertyInfo';
 import TaskChecker from '../../TaskChecker';
+import { useSession } from '../../../hooks/useSession';
 
 const GenerateButton = ({ propertyId }: { propertyId: string}) => {
   const [ taskId, setTaskId ] = useState<null | string>(null);
   const [ isLoading, setLoading ] = useState<boolean>(false);
 
   const { refetch } = usePropertyInfo(propertyId);
+
+  const { session } = useSession();
 
   const reset = () => {
     refetch();
@@ -34,7 +37,8 @@ const GenerateButton = ({ propertyId }: { propertyId: string}) => {
       const response = await axios.get(`/fabricate_w_prompt?property_id=${propertyId}`, {
         headers: {
           'Content-Type': 'application/json',
-        },
+          "Authorization": `Bearer ${session.accessToken}`,
+        }
       });
 
       const { data } = response;

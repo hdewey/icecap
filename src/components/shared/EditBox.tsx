@@ -2,6 +2,9 @@ import { Box, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 import theme from "../../styles/theme.module.css";
+import { useSession } from "next-auth/react";
+import { SessionWithToken } from "../../pages/api/auth/[...nextauth]";
+import useSave from "../../hooks/useSave";
 
 const EditBox = ({ content, id, collection, key_name }: { content: string, id: string, collection: string, key_name: string }) => {
 
@@ -10,6 +13,10 @@ const EditBox = ({ content, id, collection, key_name }: { content: string, id: s
 
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const contentEditableRef = useRef<HTMLDivElement | null>(null);
+
+  const { data: session } = useSession();
+
+  const { save } = useSave();
 
   useEffect(() => {
     if (contentEditableRef.current) {
@@ -26,20 +33,18 @@ const EditBox = ({ content, id, collection, key_name }: { content: string, id: s
   }
 
   const saveText = async (newText: string) => {
-    if (!isSaving) {
+    if (!isSaving && session) {
       setIsSaving(true);
       setSavingStatus("PENDING");
       try {
-        const response = await fetch("/api/save", {
-          method: "POST",
-          body: JSON.stringify({ newData: newText, id, collection, key: key_name }),
-          headers: { 'Content-Type': 'application/json' }, 
-        });
-
-        if (response.ok) {
+        const result = await save(id, collection, key_name, newText)
+        if (result.success) {
           setIsSaving(false);
           setSavingStatus("SUCCESS");
-        } 
+        }  else {
+          setIsSaving(false);
+          setSavingStatus("FAILED");
+        }
       } catch (e) {
         console.error("Error saving edit:", e);
         setIsSaving(false);

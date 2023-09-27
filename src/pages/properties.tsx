@@ -2,18 +2,16 @@
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import Panel from '../components/shared/Panel';
 import PropertyList from '../components/properties/PropertyList';
-const Log = dynamic(() => import('../components/Log'), {
-  ssr: false,
-});
+import { getSession } from 'next-auth/react';
+import Header from '../components/shared/Header';
 
 const LogPage: NextPage = () => {
   return (
+    <>
+    <Header title={"snowcap"} />
     <div className={styles.container}>
       <Head>
         <title>snowcap - Properties</title>
@@ -28,7 +26,24 @@ const LogPage: NextPage = () => {
         </Panel>
       </main>
     </div>
+    </>
   )
 }
 
-export default LogPage
+export default LogPage;
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context) as any
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: { session }
+  }
+}

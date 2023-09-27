@@ -11,7 +11,7 @@ const pages = [
   { name: 'properties', path: '/properties' }
 ];
 
-const Header = ({ title }: { title: string }) => {
+const Header = ({ title, noNav = false, }: { title: string, noNav?: boolean; }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +57,9 @@ const Header = ({ title }: { title: string }) => {
       <div className={`${styles.container} ${isScrolled ? styles.containerScrolled : ''}`}>
         <div className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`} ref={headerRef}>
           <Link href="/"><Text fontFamily={"Lexend"} textStyle={"h1"} fontSize={"4rem"}>{title}</Text></Link>
-          {breakpoint === "md" ? <DesktopNav /> : <MobileNav isOpen={isOpen} onOpen={() => setIsOpen(true)} onClose={() => setIsOpen(false)} />}
+          {
+            !noNav && (breakpoint === "md" ? <DesktopNav /> : <MobileNav isOpen={isOpen} onOpen={() => setIsOpen(true)} onClose={() => setIsOpen(false)} />)
+          }
         </div>
       </div>
 

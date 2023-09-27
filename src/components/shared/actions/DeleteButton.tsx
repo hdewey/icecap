@@ -1,12 +1,15 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useDisclosure, Text, Button, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Icon, Spinner } from "@chakra-ui/react"
 import React, { useState } from "react"
+import { useSession } from "../../../hooks/useSession";
 
 const DeleteButton = ({ message, id, collection, refetch }: { message: string, id: string, collection: string, refetch: any }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = React.useRef<HTMLButtonElement | null>(null);
 
   const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
+
+  const { session } = useSession(); 
 
   const handleConfirm = async () => {
     if (!id || !collection) {
@@ -19,6 +22,7 @@ const DeleteButton = ({ message, id, collection, refetch }: { message: string, i
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.accessToken}`
         },
       });
       if (req.status === 200) {

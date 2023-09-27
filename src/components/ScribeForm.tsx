@@ -7,6 +7,7 @@ import TaskChecker from './TaskChecker';
 import useProperties from '../hooks/useProperties';
 import Loader from './Loader';
 import { Box, Button, HStack, Spinner, Text } from '@chakra-ui/react';
+import { useSession } from '../hooks/useSession';
 
 const ScribeForm = () => {
   const [file, setFile] = useState<File | Blob | null>(null);
@@ -27,6 +28,8 @@ const ScribeForm = () => {
   let intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const { data: properties, isLoading: isPropertiesLoading } = useProperties(); 
+
+  const { session } = useSession();
   
   const startRecording = async () => {
     if (typeof document !== 'undefined') {
@@ -115,9 +118,19 @@ const ScribeForm = () => {
     }
   
     formData.append('property_id', propertyId);
+
+    if (!session) {
+      alert("No session!")
+      return;
+    }
   
     try {
-      const response = await axios.post('/scribe', formData);
+      const response = await axios.post('/scribe', formData, {
+        headers: {
+          "Authorization": `Bearer ${session.accessToken}`,
+          "Content-Type": "multipart/form-data"
+        }
+      });
       const { data } = response;
       if (data.message === 'task queued') {
         setTaskId(data.task_id);

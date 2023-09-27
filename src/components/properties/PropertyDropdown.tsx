@@ -96,6 +96,10 @@ const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
 
   const { data: prompt } = usePrompt(prompt_id);
 
+  useEffect(() => {
+    if (prompt) console.log(prompt)
+  }, [ prompt ])
+
   return (
     <Box>
         <Text textStyle={'h2'} mb={5}>Generate Property Descriptions</Text>
@@ -114,8 +118,8 @@ const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
             </Box>
             {prompt && <EditBox 
               collection={'prompts'} 
-              content={prompt[0].value} 
-              id={prompt[0]._id} 
+              content={prompt.value} 
+              id={prompt._id} 
               key_name={'value'} 
             />}
             <GenerateButton propertyId={propertyInfo._id} />

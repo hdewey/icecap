@@ -3,6 +3,7 @@ import axios from "../utils/axios";
 
 import styles from "../styles/TaskChecker.module.css";
 import { Box, Text } from "@chakra-ui/react";
+import { useSession } from "../hooks/useSession";
 
 const funcs: {[index: string]: string } = {
   'fabricate': 'Generation',
@@ -13,12 +14,19 @@ const TaskChecker = ({ taskId, taskType, refetch }: { taskId: string | null, tas
   const [taskResult, setTaskResult] = useState<null | any>(null);
   const [taskState, setTaskState] = useState<'LOADING' | 'SUCCESS' | 'FAILURE'>('LOADING');
 
+  const { session } = useSession();
+
   useEffect(() => {
     if (!taskId) return;
 
     const interval = setInterval(async () => {
       try {
-        const response = await axios.get(`/task/${taskId}`);
+        const response = await axios.get(`/task/${taskId}`, {
+          headers: {
+            "Authorization": `Bearer ${session.accessToken}`,
+          }
+        })
+
         const { data } = response;
 
         if (data.state === 'SUCCESS') {
