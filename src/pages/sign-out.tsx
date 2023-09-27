@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 
 const SignOutPage = () => {
   useEffect(() => {
-    signOut({ callbackUrl: '/sign-in' });
+    signOut({ callbackUrl: '/' });
   }, []);
 
   return (
