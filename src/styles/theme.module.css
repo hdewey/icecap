@@ -124,12 +124,11 @@
   padding: 10px;
   padding-top: 30px;
   white-space: pre-line;
-  border: var(--secondary-border);
-  border-radius: 15px;
-  box-shadow: var(--box-shadow);
+  /* border: var(--secondary-border); */
+  /* border-radius: 15px; */
+  /* box-shadow: var(--box-shadow); */
 }
 
 .liveTextBox:focus {
-  /* border: var(--border); */
   outline: none;
 }

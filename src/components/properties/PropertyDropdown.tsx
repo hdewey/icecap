@@ -1,4 +1,4 @@
-import { Box, Text, Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from "@chakra-ui/react"
+import { Box, Text, Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel, Button } from "@chakra-ui/react"
 import { Property } from "../../utils/types";
 import EditBox from "../shared/EditBox";
 import { convertUnixTimestampToDate } from "../../utils/etc";
@@ -91,14 +91,24 @@ const TranscribeDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
 }
 
 const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
+  const [ content, setContent ] = useState<string>("");
 
-  const prompt_id = "650e6f5e00bd63c0fa8c5bd8";
-
-  const { data: prompt } = usePrompt(prompt_id);
+  // default prompt id:
 
   useEffect(() => {
-    if (prompt) console.log(prompt)
-  }, [ prompt ])
+    if (propertyInfo.prompt) {
+      setContent(propertyInfo.prompt)
+    }
+  }, [propertyInfo])
+
+  // useEffect(() => {
+  //   if (!isDefault && propertyInfo && propertyInfo.prompt !== '') {
+  //     setContent(propertyInfo.prompt)
+  //   } else {
+  //     setContent(prompt.value);
+  //   }
+  // }, [ propertyInfo, isDefault, prompt ])
+
 
   return (
     <Box>
@@ -116,12 +126,13 @@ const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
             > 
               <Text textStyle={'h2'}>Edit Prompt:</Text>
             </Box>
-            {prompt && <EditBox 
-              collection={'prompts'} 
-              content={prompt.value} 
-              id={prompt._id} 
-              key_name={'value'} 
+            {<EditBox 
+              collection={'properties'} 
+              content={content} 
+              id={propertyInfo._id} 
+              key_name={'prompt'} 
             />}
+            <Text>Example Prompt: you are an expert real estate agent in Austin, Texas. You are articulate, friendly, and detail focused. Create 3 listing descriptions for this property, 100 words, 200 words, and 300 words.</Text>
             <GenerateButton propertyId={propertyInfo._id} />
           </Box>
       </Box>

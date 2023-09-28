@@ -52,9 +52,11 @@ export default async function handler(
       await client.close();
       return;
   }
+
+  const default_prompt = "you are an expert real estate agent in Austin, Texas. You are articulate, friendly, and detail focused. Create 3 listing descriptions for this property, 100 words, 200 words, and 300 words";
   
   try {
-      const result = await propertiesCollection.insertOne({ property_name: propertyName, agent, uploaded_at });
+      const result = await propertiesCollection.insertOne({ property_name: propertyName, agent, uploaded_at, prompt: default_prompt});
       await client.close();
   
       res.status(200).json({ insertedId: result.insertedId });

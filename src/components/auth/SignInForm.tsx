@@ -31,7 +31,6 @@ const SignInForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate input
     if (!email || !password) {
       toast({
         title: "Validation Error",
@@ -53,8 +52,8 @@ const SignInForm = () => {
 
     if (!submit || !submit.ok) {
       toast({
-        title: "Login failed.",
-        description: submit?.error,
+        title: "Login Failed",
+        description: "Invalid credentials",
         status: "error",
         duration: 3000,
         isClosable: true,

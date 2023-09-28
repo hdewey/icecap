@@ -3,6 +3,7 @@ export interface Property {
   property_name: string;
   agent: string;
   uploaded_at: number;
+  prompt: string;
   transcripts: Transcript[];
   descriptions: Description[];
 }

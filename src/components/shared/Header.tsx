@@ -3,7 +3,8 @@ import styles from '../../styles/Header.module.css';
 import ActiveLink from './ActiveLink';
 import Link from 'next/link';
 import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Flex, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { HamburgerIcon } from '@chakra-ui/icons';import { useSession } from '../../hooks/useSession';
+import { signOut } from 'next-auth/react';
 
 const pages = [
   { name: 'create', path: '/create' },
@@ -62,7 +63,6 @@ const Header = ({ title, noNav = false, }: { title: string, noNav?: boolean; }) 
           }
         </div>
       </div>
-
       <Box style={{ height: (headerHeight * 1.5) + "px", width: "100vw", background: 'var(--primary-white)'}} zIndex={-1}></Box>
     </>
   );
@@ -70,8 +70,11 @@ const Header = ({ title, noNav = false, }: { title: string, noNav?: boolean; }) 
 export default Header;
 
 const DesktopNav = () => {
+  const session = useSession();
+
   return (
     <Flex className={styles.desktopNav}>
+      { session.status === 'authenticated' && <Text onClick={() => signOut({callbackUrl: "/"})} _hover={{cursor: 'pointer'}}>sign out</Text>}
       {pages.map((page) => (
         <ActiveLink key={page.path} href={page.path} activeClassName={styles.activeLink}>
           <Text color="var(--primary-dark)" mr={4} >
@@ -84,6 +87,8 @@ const DesktopNav = () => {
 }
 
 const MobileNav = ({ isOpen, onOpen, onClose }: { isOpen: boolean, onOpen: () => void, onClose: () => void }) => {
+  const session = useSession();
+
   return (
     <>
       <Button 
@@ -108,6 +113,7 @@ const MobileNav = ({ isOpen, onOpen, onClose }: { isOpen: boolean, onOpen: () =>
           <DrawerContent>
             <DrawerBody bgColor={"var(--primary-white)"} h={'100%'}>
               <VStack spacing={10} my={'10vh'} >
+              { session.status === 'authenticated' && <Text onClick={() => signOut({callbackUrl: "/"})} _hover={{cursor: 'pointer'}}>sign out</Text>}
                 {pages.map((page) => (
                   <ActiveLink key={page.path} href={page.path} activeClassName={styles.activeLink}>
                     <Text onClick={onClose}>
@@ -123,6 +129,3 @@ const MobileNav = ({ isOpen, onOpen, onClose }: { isOpen: boolean, onOpen: () =>
     </>
   );
 }
-
-
-

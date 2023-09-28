@@ -18,8 +18,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { key, newData, collection, id } = req.body;
 
-  console.log(key, newData, collection, id)
-
   if (!collection || !id || (!newData && newData !== "" ) || !key) {
     res.status(400).json({ error: "No ID, key, collection, or newData provided" });
     return;
