@@ -91,15 +91,6 @@ const TranscribeDropdown = ( {propertyInfo }: { propertyInfo: Property }) => {
 }
 
 const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
-  const [ content, setContent ] = useState<string>("");
-
-  // default prompt id:
-
-  useEffect(() => {
-    if (propertyInfo.prompt) {
-      setContent(propertyInfo.prompt)
-    }
-  }, [propertyInfo])
 
   // useEffect(() => {
   //   if (!isDefault && propertyInfo && propertyInfo.prompt !== '') {
@@ -128,11 +119,12 @@ const GenerateDropdown = ({ propertyInfo }: { propertyInfo: Property }) => {
             </Box>
             {<EditBox 
               collection={'properties'} 
-              content={content} 
+              content={propertyInfo.prompt}
               id={propertyInfo._id} 
               key_name={'prompt'} 
             />}
-            <Text>Example Prompt: you are an expert real estate agent in Austin, Texas. You are articulate, friendly, and detail focused. Create 3 listing descriptions for this property, 100 words, 200 words, and 300 words.</Text>
+            <Text fontWeight={"bold"} py={2}>Example Prompt: </Text>
+            <Text py={1}>you are an expert real estate agent in Austin, Texas. You are articulate, friendly, and detail focused. Create 3 listing descriptions for this property, 100 words, 200 words, and 300 words. </Text>
             <GenerateButton propertyId={propertyInfo._id} />
           </Box>
       </Box>
