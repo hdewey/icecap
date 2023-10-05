@@ -10,6 +10,7 @@ import jwt from 'jsonwebtoken'
 export interface SessionWithToken extends Session {
   accessToken?: string;
 }
+
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({

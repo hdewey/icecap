@@ -2,23 +2,19 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getSession } from 'next-auth/react'
 import { Box } from '@chakra-ui/react'
-import Header from '../components/Utils/Header'
-import PropertiesPage from '../components/Pages/PropertiesPage'
+import Header from '../../components/Utils/Header'
+import PropertyInfoPage from '../../components/Pages/PropertyInfoPage'
 
-const Home: NextPage = () => {
+const PropertyDetails: NextPage = () => {
   return (
     <>
       <Header />
-      
-      <PropertiesPage />
-    </> 
+      <PropertyInfoPage />
+    </>
   )
 }
-
-export default Home;
-
+export default PropertyDetails;
 // export async function getServerSideProps(context: any) {
 //   const session = await getSession(context) as any
 

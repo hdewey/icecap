@@ -20,7 +20,6 @@ export function timeSince(date: Date) {
   return "edited " + Math.floor(seconds) + " seconds ago";
 }
 
-
 export function convertUnixTimestampToDate(unixTimestamp: number) {
   const date = new Date(unixTimestamp * 1000); 
   return `${date.toDateString()} ${date.toTimeString().split(' ')[0]}`; 

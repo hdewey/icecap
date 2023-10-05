@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import SignUpForm from "../../components/auth/SignUpForm";
-import Header from "../../components/shared/Header";
-import Panel from "../../components/shared/Panel";
+import Header from "../../components/Utils/Header";
+import Panel from "../../components/Utils/Panel";
 
 const SignUpPage = () => {
   return (
