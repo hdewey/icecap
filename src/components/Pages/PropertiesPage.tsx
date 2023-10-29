@@ -85,6 +85,7 @@ const PropertiesPage = () => {
           </Box>
         </Button>
       </Box>
+
       <PropertyList allProperties={allProperties} />
       
       <AdditionalInfoModal isOpen={isAdditionalInfoOpen} onClose={onAdditionalInfoClose} />
@@ -145,7 +146,7 @@ const PropertyList = ({ allProperties }: { allProperties: boolean }) => {
           <Center h={'30vh'}>
             <Spinner />
           </Center>
-      } 
+      }
       {
         properties && <Stack
           my={6}
@@ -156,6 +157,23 @@ const PropertyList = ({ allProperties }: { allProperties: boolean }) => {
             properties && properties.map((property: any) => (
               <PropertyCard propertyId={property._id} key={property._id} />
             ))
+          }
+
+          {
+            !isLoading && properties.length === 0 && (
+              <Box 
+                display={'flex'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                boxShadow={'var(--box-shadow)'}
+                w={'100%'}
+                bgColor={"secondary"}
+                px={6}
+                py={8}
+              >
+                <Text textStyle={'h3'}>{"No properties! Create a property to get started."}</Text>
+              </Box>
+            )
           }
         </Stack>
       } 
