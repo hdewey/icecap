@@ -4,8 +4,6 @@ import bcrypt from "bcryptjs";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
-  console.log('Received ' + req.method);
-
   const client = createMongoClient();
   if (!client) {
     return res.status(500).json({ message: 'Problem connecting to database' });
