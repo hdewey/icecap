@@ -1,20 +1,17 @@
 import type { NextPage } from 'next'
+import Header from '../../components/Utils/Header'
+import PropertyInfoPage from '../../components/Utils/Property/PropertyInfoPage'
 import { getSession } from 'next-auth/react'
-import Header from '../components/Utils/Header'
-import dynamic from 'next/dynamic'
-const PropertiesPage = dynamic(() => import("../components/Pages/PropertiesPage"), {
-  ssr: false,
-});
-const Home: NextPage = () => {
+
+const PropertyDetails: NextPage = () => {
   return (
     <>
       <Header />
-      <PropertiesPage />
-    </> 
+      <PropertyInfoPage />
+    </>
   )
 }
-
-export default Home;
+export default PropertyDetails;
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context) as any

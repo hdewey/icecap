@@ -56,7 +56,7 @@ const EditBox = ({ content, id, collection, key_name }: { content: string, id: s
   }
 
   return (
-<>
+    <>
       <Box
         position={'relative'}
         boxShadow={isFocused ? "var(--focused-box-shadow)" : "var(--box-shadow)"}

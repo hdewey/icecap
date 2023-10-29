@@ -1,15 +1,30 @@
-import { Box } from "@chakra-ui/react";
-import SignUpForm from "../../components/auth/SignUpForm";
-import Header from "../../components/shared/Header";
-import Panel from "../../components/shared/Panel";
+import { Box, useDisclosure } from "@chakra-ui/react";
+import Header from "../../components/Utils/Header";
+import CreateAccountModal from "../../components/Modals/Auth/CreateAccount";
+import { useSession } from "../../hooks/useSession";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const SignUpPage = () => {
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  
+  const { status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      onClose();
+      router.push('/');
+    } else {
+      onOpen();
+    }
+  }, [ status ])
+
   return (
     <>
-      <Header title={"snowcap"} noNav />
-      <Panel title={"sign up"}>
-          <SignUpForm />
-      </Panel>
+      <Header />
+      <CreateAccountModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

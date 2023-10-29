@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createMongoClient } from '../../lib/db';
-import { getSession } from 'next-auth/react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth/[...nextauth]';
 
@@ -40,7 +39,7 @@ export default async function handler(
 
   await client.connect();
 
-  const db = client.db('horizon_v2');
+  const db = client.db('horizon_v3');
   const propertiesCollection = db.collection('properties');
 
   const uploaded_at = Math.floor(Date.now() / 1000);
@@ -48,20 +47,18 @@ export default async function handler(
   const existingProperty = await propertiesCollection.findOne({ property_name: propertyName });
 
   if (existingProperty) {
-      res.status(409).json({ error: "Property with this name already exists" });
-      await client.close();
-      return;
+    res.status(409).json({ error: "Property with this name already exists" });
+    await client.close();
+    return;
   }
 
-  const default_prompt = "you are an expert real estate agent in Austin, Texas. You are articulate, friendly, and detail focused. Create 3 listing descriptions for this property, 100 words, 200 words, and 300 words";
-  
   try {
-      const result = await propertiesCollection.insertOne({ property_name: propertyName, agent, uploaded_at, prompt: default_prompt});
-      await client.close();
+    const result = await propertiesCollection.insertOne({ property_name: propertyName, agent, uploaded_at});
+    await client.close();
   
-      res.status(200).json({ insertedId: result.insertedId });
+    res.status(200).json({ insertedId: result.insertedId });
   } catch (error: any) {
-      await client.close();
-      res.status(500).json({ error: "Failed to insert property", details: error.message });
+    await client.close();
+    res.status(500).json({ error: "Failed to insert property", details: error.message });
   }
 }

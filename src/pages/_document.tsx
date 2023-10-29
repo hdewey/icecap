@@ -5,7 +5,7 @@ const MyDocument = () => {
     <Html>
       <Head>
       </Head>
-      <body style={{ background: "#D4D6FF !important", marginRight: "0 !important" }}>
+      <body>
         <Main />
         <NextScript />
       </body>

@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createMongoClient } from '../../lib/db';
 import { BSON } from 'mongodb';
-import { getSession } from 'next-auth/react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth/[...nextauth]';
 
@@ -32,7 +31,7 @@ export default async function handler(
 
     await client.connect();
 
-    const db = client.db('horizon_v2');
+    const db = client.db('horizon_v3');
     const col = db.collection(collection as string);
     
     const result = await col.findOneAndDelete({ _id: new BSON.ObjectId(id as string) });
