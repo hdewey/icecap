@@ -1,6 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Link } from "@chakra-ui/react";
 import AuthBox from "./AuthBox";
-
 
 const Header = () => {
   
@@ -30,9 +29,9 @@ const Header = () => {
           px={6}
 
           boxShadow={"var(--box-shadow)"}
+          bgColor={"secondary"}
         >
-          <Text textStyle={"h1"}>{"snowcap"}</Text>
-          <Text textStyle={"h3"}>{"home"}</Text>
+          <Link href={"/"} textDecor={'none !important'}><Text textStyle={"h1"}>{"snowcap"}</Text></Link>
         </Box>
 
         <AuthBox />

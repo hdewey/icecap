@@ -7,6 +7,7 @@ export const Button = {
   baseStyle: {
     fontWeight: 'bold', 
     borderRadius: 'sm',
+    transition: "border-radius ease 0.2s"
   },
   variants: {
     PrimaryButton: {
@@ -16,6 +17,7 @@ export const Button = {
       _hover: {
         bg: 'primary',
         opacity: 0.6,
+        borderRadius: 'var(--border-radius)'
       },
     },
     InverseButton: {
@@ -25,6 +27,7 @@ export const Button = {
       _hover: {
         bg: 'secondary',
         opacity: 0.6,
+        borderRadius: 'var(--border-radius)'
       },
     },
   },

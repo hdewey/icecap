@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: React.ReactElement}) => (
     <Box
       w={"100%"}
       h={"100%"}
-      px={6}
+      px={[4, null, null, 20]}
       py={4}
     >
       { children }

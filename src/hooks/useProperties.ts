@@ -1,12 +1,14 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import { useSession } from './useSession';
 
-async function getProperties(session?: any): Promise<any> {
+async function getProperties(session: any, email: string): Promise<any> {
   if (!session) {
     throw new Error("No session");
   }
 
-  const res = await fetch(`/api/properties`, {
+  const filled_email = email ? email : '';
+
+  const res = await fetch(`/api/properties?${email ? `email=${encodeURIComponent(filled_email)}` : ''}`, {
     headers: {
       ...(session ? { Authorization: `Bearer ${session.accessToken}` } : {}),
     }
@@ -21,9 +23,10 @@ async function getProperties(session?: any): Promise<any> {
   return data.properties;
 }
 
-function useProperties(): UseQueryResult<any, Error> {
+function useProperties(email: string = ''): UseQueryResult<any, Error> {
   const { session, status } = useSession();
-  return useQuery('properties', () => getProperties(session), {
+
+  return useQuery(`properties ${email}`, () => getProperties(session, email), {
     refetchInterval: 3000,
     enabled: status === 'authenticated',  // only run the query if the user is authenticated
   });

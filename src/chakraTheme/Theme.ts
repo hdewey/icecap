@@ -4,6 +4,7 @@ import { Stepper } from "./Stepper";
 import { Button } from "./Button";
 import TextStyles from "./TextStyles";
 import Tabs from "./Tabs";
+import Switch from "./Switch";
 
 const colors = {
   primary: "#030001",
@@ -16,6 +17,7 @@ const gradients = {
 };
 
 const components = {
+  Switch,
   Input,
   Stepper,
   Tabs,

@@ -15,40 +15,42 @@ const SmartStepper = ({ stepperState }: { stepperState: any }) => {
   })
 
   useEffect(() => {
-    if (stepperState ) {
+    if (stepperState) {
       setActiveStep(stepperState.step);
     }
-  }, [stepperState])
+  }, [ stepperState ])
   
   return (
-    <Skeleton isLoaded={ stepperState !== undefined }>
+    <>
+      {
+        stepperState && 
+          <Stepper index={activeStep} colorScheme={"blackAlpha"} p={3} w={["100px", null, "300px", "500px"]}>
+            {steps.map((step, index) => (
+              <Step key={index}>
+                <StepIndicator
+                  w="24px"
+                  h="24px"
+                  borderRadius="50%"
+                  border={"none"}
+                  boxShadow={"var(--box-shadow)"}
+                  bg={index < activeStep ? "black" : index === activeStep ? "": "transparent"}
+                  bgGradient={index === activeStep ? "primaryGradient" : ""}
+                >
+                </StepIndicator>
 
-    <Stepper index={activeStep} colorScheme={"blackAlpha"} p={3} w={"550px"}>
-      {steps.map((step, index) => (
-        <Step key={index}>
-          <StepIndicator
-            w="24px"
-            h="24px"
-            borderRadius="50%"
-            border={"none"}
-            boxShadow={"var(--box-shadow)"}
-            bg={index < activeStep ? "black" : index === activeStep ? "blue": "transparent"}
-            bgGradient={index === activeStep ? "primaryGradient" : ""}
-          >
-          </StepIndicator>
+                <Box flexShrink="0">
+                  <StepTitle>
+                    <Text w={['50px', null, null, '80px']} textTransform={index === activeStep ? 'uppercase' : 'lowercase'} fontWeight={index === activeStep ? 'bold' : 'normal'}>{step.title}</Text>
+                  </StepTitle>
+                </Box>
 
-          <Box flexShrink="0">
-            <StepTitle>
-              <Text w={['50px', null, null, '80px']} textTransform={index === activeStep ? 'uppercase' : 'lowercase'} fontWeight={index === activeStep ? 'bold' : 'normal'}>{step.title}</Text>
-            </StepTitle>
-          </Box>
-
-          <StepSeparator />
-        </Step>
-      ))}
-    </Stepper>
-    </Skeleton>
-
+                <StepSeparator />
+              </Step>
+            ))}
+          </Stepper>
+      }
+      
+    </>
   );
 };
 

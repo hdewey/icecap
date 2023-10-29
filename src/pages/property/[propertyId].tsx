@@ -1,10 +1,7 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Box } from '@chakra-ui/react'
 import Header from '../../components/Utils/Header'
-import PropertyInfoPage from '../../components/Pages/PropertyInfoPage'
+import PropertyInfoPage from '../../components/Utils/Property/PropertyInfoPage'
+import { getSession } from 'next-auth/react'
 
 const PropertyDetails: NextPage = () => {
   return (
@@ -15,18 +12,21 @@ const PropertyDetails: NextPage = () => {
   )
 }
 export default PropertyDetails;
-// export async function getServerSideProps(context: any) {
-//   const session = await getSession(context) as any
 
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: '/sign-in',
-//         permanent: false,
-//       },
-//     }
-//   }
-//   return {
-//     props: { session }
-//   }
-// }
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context) as any
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/login`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+}

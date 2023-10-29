@@ -19,6 +19,11 @@ export default async function handler(
   }
 
   const { propertyId } = req.query;
+
+  if (!propertyId || propertyId === 'undefined' || propertyId === 'none') {
+    return res.status(500).json({ error: "No propertyId" });
+  }
+
   const client = createMongoClient();
 
   if (!client) {
@@ -27,11 +32,11 @@ export default async function handler(
   }
 
   await client.connect();
-  const db = client.db('horizon_v2');
+  const db = client.db('horizon_v3');
   const propertiesCollection = db.collection('properties');
 
   const propertyInfoArray = await propertiesCollection.aggregate([
-    { $match: { _id: new ObjectId(propertyId as string) } },
+    { $match: { _id: new ObjectId(propertyId as string) }},
     {
       $lookup: {
         from: "transcripts",
@@ -58,6 +63,9 @@ export default async function handler(
   }
 
   const propertyInfo = propertyInfoArray[0] as Property;
+
+  propertyInfo.descriptions.sort((a: any, b: any) => b.upload_time - a.upload_time);
+
   const stepperState = getStepperState(propertyInfo);
 
   res.status(200).json({ property: propertyInfo, stepperState });

@@ -2,11 +2,14 @@ import { useQuery } from 'react-query';
 import { Property } from '../utils/types';
 import { useSession } from './useSession';
 
-export default function usePropertyInfo(propertyId: string) {
+export default function usePropertyInfo(propertyId: string = 'none') {
   const { session } = useSession();
 
-  // const jwt = session.accessToken;
-  const jwt = "DISABLED"
+  let jwt = 'INVALID';
+
+  if (session && session.accessToken) {
+    jwt = session.accessToken;
+  }
 
   return useQuery(['property', propertyId], () => getPropertyInfo(propertyId, jwt));
 }

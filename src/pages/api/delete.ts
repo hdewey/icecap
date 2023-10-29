@@ -31,7 +31,7 @@ export default async function handler(
 
     await client.connect();
 
-    const db = client.db('horizon_v2');
+    const db = client.db('horizon_v3');
     const col = db.collection(collection as string);
     
     const result = await col.findOneAndDelete({ _id: new BSON.ObjectId(id as string) });
